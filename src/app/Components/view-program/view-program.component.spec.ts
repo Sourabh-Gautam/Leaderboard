@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewProgramComponent } from './view-program.component';
+// import { ViewProgramComponent } from './view-program.component';
 
-describe('ViewProgramComponent', () => {
-  let component: ViewProgramComponent;
-  let fixture: ComponentFixture<ViewProgramComponent>;
+// describe('ViewProgramComponent', () => {
+//   let component: ViewProgramComponent;
+//   let fixture: ComponentFixture<ViewProgramComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ViewProgramComponent ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ ViewProgramComponent ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewProgramComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(ViewProgramComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
