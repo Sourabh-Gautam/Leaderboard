@@ -1,0 +1,14 @@
+<main class="landing-page-container">
+  <div>
+    <header>
+      <app-login-header></app-login-header>
+    </header>
+    <section>
+      <app-login *ngIf="flag; else renderThis" (toggleFlag)="toggleFlag()">
+      </app-login>
+      <ng-template #renderThis>
+        <app-signup (toggleFlag)="toggleFlag()"></app-signup>
+      </ng-template>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,86 @@
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Edit Program Template
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClosePopup()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          #programForm="ngForm"
+          (ngSubmit)="
+            programForm.form.valid &&
+              handleEditProgramTemplate(programForm.value)
+          "
+        >
+          <div class="add-program">
+            <div class="popupedit">
+              <label for="name"> Category</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                name="category"
+                [(ngModel)]="programTemplate.category"
+                required
+                class="form-control"
+                placeholder="Category"
+              />
+            </div>
+            <div class="popupedit">
+              <label for="name"> Description</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                name="description"
+                required
+                [(ngModel)]="programTemplate.description"
+                class="form-control"
+                placeholder="Description"
+              />
+            </div>
+            <div class="popupedit">
+              <label for="name"> Weightage</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                name="weightage"
+                [(ngModel)]="programTemplate.weightage"
+                class="form-control weightage"
+                required
+                placeholder="Weightage"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Save Changes"
+              class="btn btn-success"
+              [disabled]="programForm.form.status === 'INVALID'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

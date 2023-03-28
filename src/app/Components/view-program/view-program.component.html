@@ -1,0 +1,97 @@
+<body>
+  <div class="">
+    <div class="">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2><b>Program Details</b></h2>
+            </div>
+            <div class="col-sm-4">
+              <button
+                type="button"
+                class="btn btn-primary add-program-container"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleAddProgram()"
+              >
+                Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead class="bg-secondary text-light">
+            <tr>
+              <th>S.No</th>
+              <th>Category</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Weightage</th>
+              <th>Added By</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="
+              let program of programs
+                | paginate : { itemsPerPage: itemPerPage, currentPage: page };
+              index as i
+            "
+          >
+            <tr>
+              <td>{{ (page - 1) * itemPerPage + i + 1 }}</td>
+              <td>{{ program.category }}</td>
+              <td>{{ program.title }}</td>
+              <td>{{ program.description }}</td>
+              <td>{{ program.weightage }}</td>
+              <td>{{ program.addedBy }}</td>
+              <td>{{ program.startDate }}</td>
+              <td>{{ program.endDate }}</td>
+              <td>
+                <div class="actions">
+                  <a
+                    class="edit"
+                    (click)="handleEditProgram(program)"
+                    title="Edit"
+                    ><i class="bx bxs-edit"></i
+                  ></a>
+
+                  <a
+                    class="view"
+                    (click)="handleViewParticipant(program)"
+                    title="View Participant"
+                    ><i class="bx bx-show-alt"></i
+                  ></a>
+                  <a
+                    class="delete"
+                    (click)="handleDeleteProgram($event)"
+                    title="Delete"
+                    ><i class="bx bxs-trash-alt"></i
+                  ></a>
+                  <input type="hidden" value="{{ program.programId }}" />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="paginate">
+          <pagination-controls
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editPopup">
+    <app-edit-program
+      [program]="program"
+      (onClose)="closeEditPopUp()"
+    ></app-edit-program>
+  </div>
+  <div *ngIf="addPopup">
+    <app-add-program (onClose)="closeAddPopUp()"></app-add-program>
+  </div>
+</body>

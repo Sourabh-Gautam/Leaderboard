@@ -1,0 +1,32 @@
+.add-program {
+  border: 1px rgb(255, 255, 255) solid;
+  width: 512px;
+  margin: 20px auto;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+}
+.add-program-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+div p {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+.back-icon {
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+.back-icon:hover {
+  transform: rotate(360deg);
+}

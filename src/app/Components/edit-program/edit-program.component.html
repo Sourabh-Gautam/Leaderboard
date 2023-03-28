@@ -1,0 +1,148 @@
+<div class="col-sm-4">
+  <div
+    class="modal fade"
+    id="editModel"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <form
+      #programForm="ngForm"
+      (ngSubmit)="
+        programForm.form.valid && handleEditProgram(programForm.value)
+      "
+    >
+      <input type="hidden" value="{{ program.programId }}" />
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Program</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="handleClosePopup()"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="popupedit">
+              <label for="name"> Category</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="category"
+                required
+                [(ngModel)]="program.category"
+              >
+                <option hidden>{{ program.category }}</option>
+                <option *ngFor="let category of categoryList">
+                  {{ category.category }}
+                </option>
+              </select>
+            </div>
+            <div class="popupedit">
+              <label for="name"> Title</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                name="title"
+                required
+                [(ngModel)]="program.title"
+                value="{{ program.title }}"
+                class="form-control"
+                placeholder="Title"
+              />
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> StartDate</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="date"
+                name="startDate"
+                required
+                [(ngModel)]="program.startDate"
+                class="form-control"
+              />
+            </div>
+            <div class="popupedit">
+              <label for="name"> End Date</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="date"
+                name="endDate"
+                required
+                [(ngModel)]="program.endDate"
+                class="form-control"
+              />
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> Description</label>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                name="description"
+                required
+                [(ngModel)]="program.description"
+                value="{{ program.description }}"
+                class="form-control"
+                placeholder="Description"
+              />
+            </div>
+            <div>
+              <div class="popupedit">
+                <label for="name"> AddedBy</label>
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  name="addedBy"
+                  required
+                  readonly
+                  [(ngModel)]="program.addedBy"
+                  value="{{ program.addedBy }}"
+                  class="form-control"
+                  placeholder="Added By"
+                />
+              </div>
+            </div>
+            <div>
+              <div class="popupedit">
+                <label for="name"> Weightage</label>
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  name="weightage"
+                  required
+                  [(ngModel)]="program.weightage"
+                  value="{{ program.weightage }}"
+                  class="form-control weightage"
+                  placeholder="Weightage"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Update"
+              class="btn btn-success"
+              [disabled]="programForm.form.status === 'INVALID'"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

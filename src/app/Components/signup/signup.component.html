@@ -1,0 +1,81 @@
+<div class="signup-container">
+  <form [formGroup]="registerForm" (ngSubmit)="signUpHandler(registerForm)">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
+          ><i class="bx bxs-user" style="font-size: 34px"> </i>
+        </span>
+      </div>
+      <input
+        formControlName="userName"
+        [ngClass]="{
+          'is-invalid': submitted && registerForm.controls.userName.errors
+        }"
+        type="text"
+        class="form-control username"
+        placeholder="Username"
+      />
+
+      <div
+        *ngIf="submitted && registerForm.controls.userName.errors"
+        class="text-danger"
+      >
+        Username is Required
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
+          ><i class="bx bxs-lock-alt" style="font-size: 34px"> </i>
+        </span>
+      </div>
+      <input
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid': submitted && registerForm.controls.password.errors
+        }"
+        type="password"
+        class="form-control password"
+        placeholder="Password"
+      />
+      <div
+        *ngIf="submitted && registerForm.controls.password.errors"
+        class="text-danger"
+      >
+        Password is Required
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
+          ><i class="bx bxs-lock" style="font-size: 34px"> </i>
+        </span>
+      </div>
+      <input
+        formControlName="confirmPassword"
+        [ngClass]="{
+          'is-invalid':
+            submitted && registerForm.controls.confirmPassword.errors
+        }"
+        type="password"
+        class="form-control confirm-password"
+        placeholder="ConfirmPassword"
+      />
+      <div
+        *ngIf="submitted && registerForm.controls.confirmPassword.errors"
+        class="text-danger"
+      >
+        Confirm Password is Required
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary py-2 px-4" value="Sign Up" />
+  </form>
+
+  <p>
+    Already have an account ?
+    <span class="log-in-link" (click)="onClick()"> Log in </span>
+  </p>
+</div>

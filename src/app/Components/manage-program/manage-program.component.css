@@ -1,0 +1,19 @@
+.pm-title {
+  text-align: center;
+  color: rgb(17, 148, 148);
+}
+.pm-card-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.pm-card-container .card {
+  margin: 20px;
+  cursor: pointer;
+}
+.pm-card-container .card :hover {
+  background: rgb(240, 240, 240);
+}

@@ -1,0 +1,147 @@
+<!-- Modal -->
+<form
+  #programForm="ngForm"
+  (ngSubmit)="programForm.form.valid && handleAddProgram(programForm.value)"
+>
+  <div
+    class="modal fade"
+    id="addModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Program</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+            (click)="handleClosePopup()"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="bx bxs-category" style="font-size: 34px"> </i>
+              </span>
+            </div>
+            <select class="form-control" name="category" ngModel required>
+              <option value="" hidden disabled selected>--Category--</option>
+              <option *ngFor="let temp of categoryList">
+                {{ temp.category }}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="bx bxs-crown" style="font-size: 34px"> </i>
+              </span>
+            </div>
+            <input
+              type="text"
+              name="title"
+              ngModel
+              required
+              class="form-control"
+              placeholder="Title"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="bx bxs-crown" style="font-size: 34px"> </i>
+              </span>
+            </div>
+            <input
+              type="date"
+              name="startDate"
+              ngModel
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="bx bxs-crown" style="font-size: 34px"> </i>
+              </span>
+            </div>
+            <input
+              type="date"
+              name="endDate"
+              ngModel
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+              </span>
+            </div>
+            <input
+              type="text"
+              name="description"
+              ngModel
+              required
+              class="form-control"
+              placeholder="Description"
+            />
+          </div>
+          <div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="addedBy"
+                readonly
+                [(ngModel)]="username"
+                class="form-control"
+                placeholder="Added By"
+              />
+            </div>
+          </div>
+          <div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-equalizer" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="weightage"
+                required
+                ngModel
+                class="form-control weightage"
+                placeholder="Weightage"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input
+            type="submit"
+            value="Add"
+            class="btn btn-success"
+            [disabled]="programForm.form.status === 'INVALID'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

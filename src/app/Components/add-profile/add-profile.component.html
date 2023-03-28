@@ -1,0 +1,186 @@
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Profile</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClosePopup()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form
+          #profileForm="ngForm"
+          (ngSubmit)="
+            profileForm.form.valid && handleAddProfile(profileForm.value);
+            profileForm.resetForm()
+          "
+        >
+          <div class="add-program">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <input
+                type="text"
+                name="name"
+                ngModel
+                id="name"
+                [(ngModel)]="form.name"
+                required
+                class="form-control"
+                placeholder="Name"
+              />
+            </div>
+
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <input
+                type="text"
+                name="email"
+                ngModel
+                id="email"
+                required
+                class="form-control"
+                placeholder="name@epam.com"
+              />
+            </div>
+
+            
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select class="form-control" name="primarySkill" ngModel required>
+                <option value="" disabled hidden selected>
+                  --Primary Skill--
+                </option>
+
+                <option *ngFor="let dg of primarySkill">
+                  {{ dg.skillName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select class="form-control" name="designation" ngModel required>
+                <option value="" disabled hidden selected>
+                  --Designation--
+                </option>
+
+                <option *ngFor="let dg of designations">
+                  {{ dg.designation }}
+                </option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select class="form-control" name="businessUnit" ngModel required>
+                <option value="" hidden disabled selected>
+                  --BusinessUnit--
+                </option>
+
+                <option *ngFor="let dg of BusinessUnit">
+                  {{ dg.businessUnitName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select class="form-control" name="rmName" ngModel>
+                <option value="" disabled hidden selected>
+                  --Resource Mangager name--
+                </option>
+
+                <option *ngFor="let rm of ResourceManager">
+                  {{ rm.resourceManagerName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select class="form-control" name="admin" ngModel required>
+                <option value="" disabled hidden selected>--Role--</option>
+
+                <option value="true">Admin</option>
+
+                <option value="false">User</option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <!-- <div class="input-group-prepend">        <span class="input-group-text" id="basic-addon1"         ><i class="bx bxs-detail" style="font-size: 34px"> </i>        </span>       </div> -->
+
+              <input
+                type="hidden"
+                name="practiceTeam"
+                [(ngModel)]="practiceTeam"
+                class="form-control"
+                placeholder="Practice Team"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Add"
+              class="btn btn-success"
+              [disabled]="profileForm.form.status === 'INVALID'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

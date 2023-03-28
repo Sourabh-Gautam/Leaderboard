@@ -1,0 +1,127 @@
+<app-header></app-header>
+<body>
+  <div>
+    <div>
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>
+                <b>Participants in the Program-{{ programTitle }}</b>
+              </h2>
+            </div>
+            <div class="col-sm-4">
+              <button
+                type="button"
+                class="btn btn-primary add-program-template-container"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleAddParticipant()"
+              >
+                Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead class="bg-secondary text-light">
+            <tr>
+              <th>S.No</th>
+              <th>ParticipantName</th>
+              <th>ContributorType</th>
+              <th>Points</th>
+              <th>Added By</th>
+              <th>Awarded Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <!-- "let participant of participants; index as i" -->
+          <!-- <tbody
+            *ngFor="
+              let participant of participants
+                | paginate
+                  : {
+                      id: 'listing_pagination',
+                      itemsPerPage: 10,
+                      currentPage: page,
+                      totalItems: totalRecords
+                    };
+              index as i
+            "
+          > -->
+          <tbody
+            *ngFor="
+              let participant of participants
+                | paginate : { itemsPerPage: itemPerPage, currentPage: page };
+              index as i
+            "
+          >
+            <tr>
+              <td>{{ (page - 1) * itemPerPage + i + 1 }}</td>
+              <td>{{ participant.participantName }}</td>
+              <td>{{ participant.contributorType }}</td>
+              <td>{{ participant.points }}</td>
+              <td>{{ participant.addedBy }}</td>
+              <td>{{ participant.awardedDate }}</td>
+              <!-- <th>Organizers</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Weightage</th> -->
+
+              <td>
+                <a
+                  class="edit"
+                  (click)="handleEditParticipant(participant)"
+                  title="Edit"
+                  ><i class="bx bxs-edit"></i
+                ></a>
+
+                <a
+                  class="delete"
+                  title="Delete"
+                  class="delete"
+                  (click)="
+                    handleDeleteParticipant($event, participant.participantId)
+                  "
+                  title="Delete"
+                  ><i class="bx bxs-trash-alt"></i
+                ></a>
+                <input type="hidden" value="{{ programId }}" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="paginate">
+          <pagination-controls
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </div>
+        <!-- <div>
+          <pagination-controls
+            id="listing-pagination"
+            maxSize="5"
+            (pageChange)="page = $event"
+          >
+          </pagination-controls>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editPopup">
+    <app-edit-participant
+      [programId]="programId"
+      [participant]="participant"
+      (closePopup)="closeEditPopUp()"
+    ></app-edit-participant>
+  </div>
+  <div *ngIf="addPopup">
+    <app-add-participant
+      [programId]="programId"
+      [weightage]="weightage"
+      (closePopup)="closeAddPopUp()"
+    ></app-add-participant>
+  </div>
+  <script src="row-veiw.js">
+    console.log("Hello");
+  </script>
+</body>

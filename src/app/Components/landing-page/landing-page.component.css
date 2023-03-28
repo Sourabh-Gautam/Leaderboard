@@ -1,0 +1,11 @@
+.landing-page-container header {
+  margin: 30px;
+}
+.landing-page-container {
+  border: 1px lightgrey solid;
+  width: 512px;
+  margin: 10px auto;
+  /* margin-bottom: 30px; */
+  border-radius: 8px;
+  text-align: center;
+}

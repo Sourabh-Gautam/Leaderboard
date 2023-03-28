@@ -1,0 +1,22 @@
+.sign-up-link {
+  cursor: pointer;
+  color: #14a1c8;
+  font-weight: 500;
+}
+.sign-up-link:hover {
+  text-decoration: underline;
+}
+.login-container {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+}
+.login-container p {
+  margin-top: 50px;
+}
+.login-container header {
+  margin: 50px;
+}
+.login-container input {
+  width: 50%;
+}

@@ -1,0 +1,80 @@
+<app-header></app-header>
+<body>
+  <div class="">
+    <div class="">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2><b>Contributor Type Details</b></h2>
+            </div>
+            <div class="col-sm-4">
+              <button
+                type="button"
+                class="btn btn-primary add-program-template-container"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleAddContributorType()"
+              >
+                Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead class="bg-secondary text-light">
+            <tr>
+              <th>S.No</th>
+              <th>Contributer Type</th>
+              <th>Points</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let contributortype of contributorTypeList; index as i"
+          >
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ contributortype.contributerType }}</td>
+              <td>{{ contributortype.points }}</td>
+
+              <td>
+                <!-- " -->
+                <a
+                  class="edit"
+                  (click)="handleEditContributortype(contributortype)"
+                  title="Edit"
+                  ><i class="bx bxs-edit"></i
+                ></a>
+
+                <!-- <a class="view" title="View Participant"
+                    ><i class="bx bx-show-alt"></i
+                  ></a> -->
+                <!-- (click)="handleDeleteProgramTemplate($event)" -->
+                <a
+                  class="delete"
+                  (click)="handleDeleteContributortype($event)"
+                  title="Delete"
+                  ><i class="bx bxs-trash-alt"></i
+                ></a>
+                <input type="hidden" value="{{ contributortype.id }}" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="editPopup">
+    <app-edit-contributortype
+      [contributortype]="contributortype"
+      (closePopup)="closeEditPopUp()"
+    ></app-edit-contributortype>
+  </div>
+  <div *ngIf="addPopup">
+    <app-add-contributortype
+      (closePopup)="closeAddPopUp()"
+    ></app-add-contributortype>
+  </div>
+</body>
+<app-footer></app-footer>

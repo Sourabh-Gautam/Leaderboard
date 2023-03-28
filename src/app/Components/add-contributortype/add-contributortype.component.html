@@ -1,0 +1,80 @@
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add ContributerType</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClosePopup()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          #contributortypeForm="ngForm"
+          (ngSubmit)="
+            contributortypeForm.form.valid &&
+              handleAddcontributortype(contributortypeForm.value);
+            contributortypeForm.resetForm()
+          "
+        >
+          <div class="add-program">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="contributerType"
+                id="contributerType"
+                [(ngModel)]="form.contributerType"
+                class="form-control"
+                placeholder="contributerType"
+                required="field is required"
+                maxlength="32"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="points"
+                id="points"
+                [(ngModel)]="form.points"
+                class="form-control"
+                placeholder="points"
+                required="point is required"
+                maxlength="32"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Add"
+              class="btn btn-success"
+              [disabled]="contributortypeForm.form.status === 'INVALID'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

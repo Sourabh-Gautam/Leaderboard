@@ -1,0 +1,39 @@
+.rec-per-page-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.rec-per-page-container > * {
+  margin: 10px;
+}
+
+.rec-per-page {
+  height: 30px;
+  margin: 0 10px;
+  outline-color: #2199e8;
+  border: lightgray 1px solid;
+}
+
+.year-quarter-filter {
+  display: flex;
+  align-items: center;
+}
+
+.date-range-filter > * {
+  margin-right: 5px;
+}
+
+.year-filter-style {
+  width: 86px;
+}
+
+.year-filter-activator {
+  display: inline-block;
+  border: solid 2px lightgray;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+}

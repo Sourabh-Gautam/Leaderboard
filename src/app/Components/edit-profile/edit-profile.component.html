@@ -1,0 +1,163 @@
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClosePopup()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          #profileForm="ngForm"
+          (ngSubmit)="
+            profileForm.form.valid && handleEditProfile(profileForm.value)
+          "
+        >
+          <div class="add-profile">
+            <div class="popupedit">
+              <label for="name"> ParticipantName</label>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend"></div>
+              <input
+                type="text"
+                name="name"
+                [(ngModel)]="profile.name"
+                required
+                class="form-control"
+                placeholder="Name"
+              />
+            </div>
+
+            <div class="popupedit">
+              <label for="email"> Email</label>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend"></div>
+              <input
+                type="text"
+                name="email"
+                [(ngModel)]="profile.email"
+                required
+                class="form-control"
+                placeholder="name@epam.com"
+              />
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> primarySkill</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="primarySkill"
+                [(ngModel)]="profile.primarySkill"
+              >
+                <option *ngFor="let dg of primarySkill">
+                  {{ dg.skillName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> Designation</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="designation"
+                [(ngModel)]="profile.designation"
+              >
+                <option hidden>{{ profile.designation }}</option>
+                <option *ngFor="let designation of designations">
+                  {{ designation.designation }}
+                </option>
+              </select>
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> BusinessUnit</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="businessUnit"
+                [(ngModel)]="profile.businessUnit"
+              >
+                <option *ngFor="let dg of BusinessUnit">
+                  {{ dg.businessUnitName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> Resource Manager</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="rmName"
+                [(ngModel)]="profile.rmName"
+              >
+                <option *ngFor="let rm of ResourceManager">
+                  {{ rm.resourceManagerName }}
+                </option>
+              </select>
+            </div>
+
+            <div class="popupedit">
+              <label for="name"> Admin</label>
+            </div>
+            <div class="input-group mb-3">
+              <select
+                class="form-control"
+                name="admin"
+                [(ngModel)]="profile.admin"
+              >
+                <option value="true">Admin</option>
+                <option value="false">User</option>
+              </select>
+            </div>
+            <!-- 
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-equalizer" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+                type="text"
+                name="practiceTeam"
+                [(ngModel)]="profile.practiceTeam"
+                class="form-control practiceTeam"
+                placeholder="Practice Team"
+              />
+            </div> -->
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Save Changes"
+              class="btn btn-success"
+              [disabled]="profileForm.form.status === 'INVALID'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

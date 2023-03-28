@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+
+* {
+  font-family: "Oswald Regular", Tahoma, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 76vh;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.active {
+  background-color: black;
+  border-bottom: 3px purple solid;
+}
+
+.my-flex {
+  display: flex;
+}
+
+.ag-theme-alpine {
+  --ag-header-column-separator-display: block;
+  --ag-header-column-separator-height: 80%;
+  --ag-header-column-separator-width: 2px;
+  --ag-header-column-separator-color: rgb(186, 191, 199);
+
+  --ag-header-column-resize-handle-display: block;
+  --ag-header-column-resize-handle-height: 25%;
+  --ag-header-column-resize-handle-width: 2px;
+  --ag-header-column-resize-handle-color: rgb(186, 191, 199);
+}
+.popupedit {
+  text-align: left;
+  font-size: large;
+  font-weight: 550;
+  padding: 3px;
+}
+.paginate {
+  text-align: right;
+}
+.button-style {
+
+   border: 1px lightgray solid;
+  
+   border-radius: 4px;
+  
+   font-size: smaller;
+  
+   padding: 3px;
+  
+   background-color: whitesmoke;
+  
+  }

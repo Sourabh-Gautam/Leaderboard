@@ -1,0 +1,36 @@
+.logo {
+  width: 10%;
+}
+
+.nav-item {
+  font-size: 16px;
+  margin-right: 15px;
+}
+
+.navbar-nav.mr-auto li a {
+  color: lightgray;
+}
+
+.header-container {
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar {
+  background-color: #303240;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logout > * {
+  padding: 2px;
+}
+
+.logout:hover > a {
+  text-decoration: underline;
+}

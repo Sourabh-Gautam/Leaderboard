@@ -1,0 +1,55 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
+          ><i class="bx bxs-user" style="font-size: 34px"> </i>
+        </span>
+      </div>
+      <input
+        formControlName="userName"
+        [ngClass]="{
+          'is-invalid': submitted && loginForm.controls.userName.errors
+        }"
+        type="text"
+        class="form-control username"
+        placeholder="Username"
+      />
+      <div
+        *ngIf="submitted && loginForm.controls.userName.errors"
+        class="text-danger"
+      >
+        Username is Required
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
+          ><i class="bx bxs-lock-alt" style="font-size: 34px"> </i>
+        </span>
+      </div>
+      <input
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid': submitted && loginForm.controls.password.errors
+        }"
+        type="password"
+        class="form-control password"
+        placeholder="Password"
+      />
+      <div
+        *ngIf="submitted && loginForm.controls.password.errors"
+        class="text-danger"
+      >
+        Password is Required
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary py-2 px-4" value="Log in" />
+  </form>
+  <p>
+    Don't have an account yet ?
+    <span class="sign-up-link" (click)="onClick()"> Sign up </span>
+  </p>
+</div>

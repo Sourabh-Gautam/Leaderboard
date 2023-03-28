@@ -1,0 +1,211 @@
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Participant</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="handleClosePopup()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          #participantForm="ngForm"
+          (ngSubmit)="
+            participantForm.form.valid &&
+              handleAddParticipant(participantForm.value);
+            participantForm.resetForm()
+          "
+        >
+          <div class="add-program">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+              <input
+
+        type="text"
+
+        list="participantName"
+
+        name="participantName"
+
+        [(ngModel)]="searchQuery"
+
+        class="form-control"
+
+        placeholder="participant name"
+
+        (change)="handleProfileChange($event)"
+
+        (input)="onInput()"
+
+       />
+              <datalist id="participantName" *ngIf="searchQuery.length >= 1">
+
+                        <option *ngFor="let option of filteredOptions">
+                
+                         {{ option }}
+                
+                        </option>
+                
+                       </datalist>
+              <!-- <input
+                type="text"
+                list="participantName"
+                name="participantName"
+                id="participantName"
+                [(ngModel)]="form.participantName"
+                class="form-control"
+                placeholder="participant name"
+                required=""
+                (change)="handleProfileChange($event)"
+              /> -->
+
+              <!-- <datalist id="participantName">
+                <option *ngFor="let temp of profileList">
+                  {{ temp.name }}
+                </option>
+              </datalist> -->
+              <!-- <select class="form-control" name="participantName" ngModel>
+                <option value="" disabled selected>
+                  ---ParticipantName---
+                </option>
+                <option *ngFor="let temp of profileList">
+                  {{ temp.name }}
+                </option>
+              </select> -->
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <select
+                class="form-control"
+                name="contributorType"
+                ngModel
+                required
+                (change)="handleContributorChange($event)"
+              >
+                <option value="" hidden disabled selected>
+                  ---contributorType---
+                </option>
+
+                <option
+                  *ngFor="let contributor of contributorTypeList"
+                  value="{{ contributor.contributerType }}"
+                  (select)="handleClick()"
+                >
+                  {{ contributor.contributerType }}
+
+                  <input
+                    type="hidden"
+                    value="{{ contributor.points }}"
+                    id="{{ contributor.contributerType }}"
+                  />
+                </option>
+              </select>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><i class="bx bxs-detail" style="font-size: 34px"> </i>
+                </span>
+              </div>
+
+              <input
+                type="text"
+                name="points"
+                [(ngModel)]="points"
+                class="form-control"
+                placeholder="points"
+              />
+            </div>
+
+            <div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"
+                    ><i class="bx bx-book-add" style="font-size: 34px"> </i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  name="addedBy"
+                  readonly
+                  [(ngModel)]="username"
+                  class="form-control"
+                  placeholder="Added By"
+                />
+                <input type="hidden" value="{{ programId }}" />
+              </div>
+            </div>
+
+            <input
+              type="text"
+              name="designation"
+              hidden
+              [(ngModel)]="designation"
+              class="form-control"
+            />
+            <input
+              type="text"
+              name="resourceManager"
+              hidden
+              [(ngModel)]="resourceManager"
+              class="form-control"
+            />
+            <input
+              type="text"
+              name="businessUnit"
+              hidden
+              [(ngModel)]="businessUnit"
+              class="form-control"
+            />
+            <input
+              type="text"
+              name="primarySkill"
+              hidden
+              [(ngModel)]="primarySkill"
+              class="form-control"
+            />
+
+            <input
+            type="text"
+            name="email"
+            hidden
+            [(ngModel)]="email"
+            class="form-control"
+          />
+
+          </div>
+          <div class="modal-footer">
+            <input
+              type="submit"
+              value="Add"
+              class="btn btn-success"
+              [disabled]="participantForm.form.status === 'INVALID'"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
