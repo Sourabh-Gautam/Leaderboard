@@ -40,7 +40,6 @@ module.exports = function (config) {
     customLaunchers: {
       MyHeadlessChrome: {
         base: "ChromeHeadless",
-        flags: ["--disable-translate", "--disable-extensions"],
       },
     },
     singleRun: true,
