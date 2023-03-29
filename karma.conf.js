@@ -35,13 +35,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ["MyHeadlessChrome"],
+    browsers: ["C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"],
     // browsers: ['Chrome', 'ChromeHeadless', 'MyHeadlessChrome'],
-    customLaunchers: {
-      MyHeadlessChrome: {
-        base: "ChromeHeadless",
-      },
-    },
     singleRun: true,
     restartOnFileChange: true,
   });
