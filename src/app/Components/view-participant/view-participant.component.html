@@ -21,6 +21,18 @@
                 Add New
               </button>
             </div>
+            <div class="col-sm-4 bulk-container">
+              <button (click)="handleClickAddBulkParticipant($event)">
+                Add bulk
+              </button>
+              <input
+                type="file"
+                accept=".csv"
+                id="participant-csv"
+                (change)="handleAddBulkParticipant($event)"
+                style="visibility: hidden"
+              />
+            </div>
           </div>
         </div>
         <table class="table table-bordered">

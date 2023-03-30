@@ -29,7 +29,7 @@ export class ParticipantService {
   }
 
   async addparticipant(programId, formData) {
-    console.log('program id', programId);
+    console.log('formdata ', JSON.stringify(formData));
     return await axios.post(
       `${this.baseUrl}/${programId}/participants`,
       formData

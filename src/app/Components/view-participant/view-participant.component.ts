@@ -40,14 +40,12 @@ export class ViewParticipantComponent implements OnInit {
   }
 
   handleViewParticipant(programId) {
-    console.log('view participant component', programId);
     this.participantService.getAllParticipants(programId).then((data) => {
       data.sort((a, b) => {
         let ms = new Date(a.awardedDate).getTime();
         let ms1 = new Date(b.awardedDate).getTime();
         return ms1 - ms;
       });
-      console.log(data);
 
       this.participants = data;
     });
@@ -63,11 +61,46 @@ export class ViewParticipantComponent implements OnInit {
   }
   handleEditParticipant(participant) {
     this.participant = participant;
-    console.log('edit participat', this.participant);
     this.editPopup = true;
   }
   handleAddParticipant() {
     this.addPopup = true;
+  }
+  handleAddBulkParticipant(event) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.readAsText(file, 'UTF-8');
+
+      reader.onload = (evt: any) => {
+        let p_arr: any = [];
+        const csvData = evt.target.result;
+
+        let participants = csvData.split('\n');
+        let header = participants[0].split(',');
+
+        for (let i = 1; i < participants.length - 1; i++) {
+          let participant = participants[i].split(',');
+          let obj = {};
+          for (let j = 0; j < participant.length; j++) {
+            obj[header[j]] = participant[j];
+          }
+          obj['addedBy'] = window.sessionStorage.getItem('username');
+          p_arr.push(obj);
+        }
+        p_arr.forEach((element) => {
+          this.participantService.addparticipant(this.programId, element);
+        });
+        // process the CSV data here
+      };
+    }
+  }
+  handleClickAddBulkParticipant(event) {
+    let fileInputElement = document.querySelector(
+      '#participant-csv'
+    ) as HTMLInputElement;
+    fileInputElement.click();
   }
   closeAddPopUp() {
     this.addPopup = false;
@@ -76,7 +109,6 @@ export class ViewParticipantComponent implements OnInit {
     this.editPopup = false;
   }
   ngOnInit(): void {
-    console.log();
     this.handleViewParticipant(this.programId);
   }
 }
