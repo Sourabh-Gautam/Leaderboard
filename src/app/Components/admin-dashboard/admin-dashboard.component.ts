@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { participantFields } from 'src/app/constants';
-import { AgGridAngular } from 'ag-grid-angular';
 import {
+  CellClickedEvent,
   ColDef,
   GridOptions,
   GridReadyEvent,
@@ -10,13 +10,8 @@ import {
   IGetRowsParams,
 } from 'ag-grid-community/dist/lib/main';
 import { RequestWithFilterAndSort } from 'src/app/model/request-with-sort-filter';
-import { left } from '@popperjs/core';
+import { AgGridAngular } from 'ag-grid-angular';
 
-// @Component({
-//   selector: 'app-admin-dashboard',
-//   templateUrl: './admin-dashboard.component.html',
-//   styleUrls: ['./admin-dashboard.component.css'],
-// })
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -42,8 +37,8 @@ export class AdminDashboardComponent implements OnInit {
       field: 'rank',
       cellStyle: { fontSize: '16px' },
       minWidth: 100,
-      filter: false,
       sortable: false,
+      filter: 'agNumberColumnFilter',
     },
     {
       field: 'participantName',
@@ -69,7 +64,7 @@ export class AdminDashboardComponent implements OnInit {
     {
       field: 'points',
       cellStyle: { fontSize: '16px' },
-      filter: false,
+      filter: 'agNumberColumnFilter',
     },
   ];
 
@@ -79,10 +74,12 @@ export class AdminDashboardComponent implements OnInit {
       filter: true,
       minWidth: 200,
       resizable: true,
+      floatingFilter: true,
+      flex: 1,
     },
     rowModelType: 'infinite',
-    suppressMenuHide: true,
     suppressHorizontalScroll: true,
+    onCellClicked: (event: CellClickedEvent) => console.log(event.column),
   };
 
   constructor(private adminService: AdminService) {}
@@ -94,39 +91,9 @@ export class AdminDashboardComponent implements OnInit {
     this.gridApi.setDatasource(this.dataSource);
   }
 
-  // yearFilterDataSource: IDatasource = {
-  //   getRows: (params: IGetRowsParams) => {
-  //     const year = (<HTMLInputElement>document.querySelector('#year')).value;
-  //     const yearFilter = (<HTMLInputElement>(
-  //       document.querySelector('#quarterFilter')
-  //     )).value;
-
-  //     const sortFilterModel: RequestWithFilterAndSort = {
-  //       colId: 'points',
-  //       sort: 'desc',
-  //       data: 'yearFilter',
-  //       filterModel: {
-  //         condition1: {
-  //           filter: year,
-  //           filterType: 'date',
-  //           type: 'eqauls',
-  //         },
-  //         condition2: {
-  //           filter: yearFilter,
-  //           filterType: 'date',
-  //           type: 'between',
-  //         },
-  //       },
-  //     };
-
-  //     this.getAllParticipants(
-  //       this.pageNo,
-  //       this.defaultPageSize,
-  //       sortFilterModel,
-  //       params
-  //     );
-  //   },
-  // };
+  onBtExport() {
+    this.gridApi.exportDataAsCsv();
+  }
 
   dataSource: IDatasource = {
     getRows: (params: IGetRowsParams) => {
@@ -284,42 +251,6 @@ export class AdminDashboardComponent implements OnInit {
     this.defaultPageSize = Number(recNo.target.value);
     this.gridApi.setDatasource(this.dataSource);
   }
-
-  // dateFilterDataSource: IDatasource = {
-  //   getRows: (params: IGetRowsParams) => {
-  //     const endDate = (<HTMLInputElement>(
-  //       document.querySelector('#end-date-filter')
-  //     )).value;
-  //     const startDate = (<HTMLInputElement>(
-  //       document.querySelector('#start-date-filter')
-  //     )).value;
-
-  //     const sortFilterModel: RequestWithFilterAndSort = {
-  //       colId: 'points',
-  //       sort: 'desc',
-  //       data: 'dateFilter',
-  //       filterModel: {
-  //         startDateFilter: {
-  //           filter: startDate,
-  //           filterType: 'date',
-  //           type: 'greaterThan',
-  //         },
-  //         endDateFilter: {
-  //           filter: endDate,
-  //           filterType: 'date',
-  //           type: 'lessThan',
-  //         },
-  //       },
-  //     };
-
-  //     this.getAllParticipants(
-  //       this.pageNo,
-  //       this.defaultPageSize,
-  //       sortFilterModel,
-  //       params
-  //     );
-  //   },
-  // };
 
   startDateFilter() {
     this.gridApi.setDatasource(this.dataSource);

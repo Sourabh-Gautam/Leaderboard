@@ -19,12 +19,13 @@ export class AddParticipantComponent implements OnInit {
   businessUnit: any;
   primarySkill: any;
   resourceManager: any;
-  email:any;
+  email: any;
   searchQuery = '';
 
- filteredOptions: string[] = [];
+  filteredOptions: string[] = [];
 
- name: string[] = [];
+  name: string[] = [];
+
   form = {
     participantName: '',
   };
@@ -72,13 +73,11 @@ export class AddParticipantComponent implements OnInit {
     });
     this.profileService
 
-   .getAllProfilesForDropDown(this.programId)
+      .getAllProfilesForDropDown(this.programId)
 
-   .then((data: any) => {
-
-    this.profileList = data;
-
-   });
+      .then((data: any) => {
+        this.profileList = data;
+      });
   }
   handleProfileChange(event) {
     let flag = true;
@@ -101,22 +100,16 @@ export class AddParticipantComponent implements OnInit {
     console.log('hi');
   }
   onInput() {
+    let i = 0;
 
-      let i = 0;
-    
-      this.profileList.forEach((element) => {
-    
-       this.name[i++] = element.name;
-    
-      });
-    
-      this.filteredOptions = this.name.filter((option) =>
-    
-       option.toLowerCase().startsWith(this.searchQuery.toLowerCase())
-    
-      );
-    
-     }
+    this.profileList.forEach((element) => {
+      this.name[i++] = element.name;
+    });
+
+    this.filteredOptions = this.name.filter((option) =>
+      option.toLowerCase().startsWith(this.searchQuery.toLowerCase())
+    );
+  }
   handleContributorChange(event) {
     const point = (
       document.getElementById(event.currentTarget.value) as HTMLInputElement

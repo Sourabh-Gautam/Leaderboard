@@ -1,3 +1,8 @@
+.header-container {
+  position: fixed;
+  top: 0;
+}
+
 .logo {
   width: 10%;
 }
@@ -11,7 +16,7 @@
   color: lightgray;
 }
 
-.header-container {
+.header-inner {
   margin: 0 20px;
   display: flex;
   justify-content: space-between;

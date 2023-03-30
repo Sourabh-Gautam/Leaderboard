@@ -33,6 +33,7 @@ import { AddProgramComponent } from './Components/add-program/add-program.compon
 import { ViewProgramComponent } from './Components/view-program/view-program.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+// import 'ag-grid-enterprise';
 
 @NgModule({
   declarations: [

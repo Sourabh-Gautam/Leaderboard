@@ -1,6 +1,11 @@
 <app-header></app-header>
-
+<section class="participation-details" style="display: none"></section>
 <div class="rec-per-page-container">
+  <div class="export-btn">
+    <button class="button-style" (click)="onBtExport()">
+      Export<i class="bx bx-download px-2"></i>
+    </button>
+  </div>
   <div class="date-range-filter">
     <input
       type="date"
@@ -18,6 +23,18 @@
     <button class="button-style" (click)="resetDateFilter()">Reset</button>
   </div>
   <div class="year-quarter-filter">
+    <select
+      disabled
+      name="quarterFilter"
+      id="quarterFilter"
+      style="padding: 4px"
+      (change)="quarterFilterHandler()"
+    >
+      <option value="all">Full</option>
+      <option *ngFor="let q of quarterCodes" value="{{ q }}">
+        {{ q.toUpperCase() }}
+      </option>
+    </select>
     <input
       type="text"
       min="1900"
@@ -30,18 +47,7 @@
       value="Year"
       (change)="quarterFilterHandler()"
     />
-    <select
-      disabled
-      name="quarterFilter"
-      id="quarterFilter"
-      style="padding: 4px"
-      (change)="quarterFilterHandler()"
-    >
-      <option value="all">All</option>
-      <option *ngFor="let q of quarterCodes" value="{{ q }}">
-        {{ q.toUpperCase() }}
-      </option>
-    </select>
+
     <span
       class="year-filter-activator"
       (click)="quarterFilterClickHandler($event)"
