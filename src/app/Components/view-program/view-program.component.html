@@ -5,7 +5,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-8">
-              <h2><b>Program Details</b></h2>
+              <h2><strong>Program Details</strong></h2>
             </div>
             <div class="col-sm-4">
               <button
@@ -56,20 +56,20 @@
                     class="edit"
                     (click)="handleEditProgram(program)"
                     title="Edit"
-                    ><i class="bx bxs-edit"></i
+                    ><em class="bx bxs-edit"></em
                   ></a>
 
                   <a
                     class="view"
                     (click)="handleViewParticipant(program)"
                     title="View Participant"
-                    ><i class="bx bx-show-alt"></i
+                    ><em class="bx bx-show-alt"></em
                   ></a>
                   <a
                     class="delete"
                     (click)="handleDeleteProgram($event)"
                     title="Delete"
-                    ><i class="bx bxs-trash-alt"></i
+                    ><em class="bx bxs-trash-alt"></em
                   ></a>
                   <input type="hidden" value="{{ program.programId }}" />
                 </div>
