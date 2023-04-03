@@ -74,15 +74,17 @@ export class ViewParticipantComponent implements OnInit {
       reader.readAsText(file, 'UTF-8');
 
       reader.onload = (evt: any) => {
-        let p_arr: any = [];
+        const p_arr: any = [];
         const csvData = evt.target.result;
 
-        let participants = csvData.split('\n');
-        let header = participants[0].split(',');
-
+        const participants = csvData.split('\n');
+        const headerRectifying = participants[0].replace('\r', '');
+        const header = headerRectifying.split(',');
+        console.log(header);
         for (let i = 1; i < participants.length - 1; i++) {
-          let participant = participants[i].split(',');
-          let obj = {};
+          const data = participants[i].replace('\r', '');
+          const participant = data.split(',');
+          const obj = {};
           for (let j = 0; j < participant.length; j++) {
             obj[header[j]] = participant[j];
           }
@@ -92,12 +94,11 @@ export class ViewParticipantComponent implements OnInit {
         p_arr.forEach((element) => {
           this.participantService.addparticipant(this.programId, element);
         });
-        // process the CSV data here
       };
     }
   }
   handleClickAddBulkParticipant(event) {
-    let fileInputElement = document.querySelector(
+    const fileInputElement = document.querySelector(
       '#participant-csv'
     ) as HTMLInputElement;
     fileInputElement.click();

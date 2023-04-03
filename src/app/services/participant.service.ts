@@ -12,7 +12,6 @@ export class ParticipantService {
   constructor() {}
 
   async getAllParticipants(programId: number) {
-    console.log('this is the program id', programId);
     await axios
       .get(`${this.baseUrl}/${programId}/participants`)
       .then((response) => {
@@ -29,7 +28,6 @@ export class ParticipantService {
   }
 
   async addparticipant(programId, formData) {
-    console.log('formdata ', JSON.stringify(formData));
     return await axios.post(
       `${this.baseUrl}/${programId}/participants`,
       formData
@@ -37,8 +35,6 @@ export class ParticipantService {
   }
 
   async updateparticipants(formData, programId: number, participantId: number) {
-    console.log(formData);
-
     return await axios.put(
       `${this.baseUrl}/${programId}/participants/${participantId}`,
       formData

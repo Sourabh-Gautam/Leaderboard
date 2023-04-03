@@ -11,6 +11,7 @@ import {
 } from 'ag-grid-community/dist/lib/main';
 import { RequestWithFilterAndSort } from 'src/app/model/request-with-sort-filter';
 import { AgGridAngular } from 'ag-grid-angular';
+import { groupBy } from 'src/app/common.func';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -197,14 +198,32 @@ export class AdminDashboardComponent implements OnInit {
           } else {
             participants.forEach((e, i) => (e['rank'] = 0));
           }
-          params.successCallback(
-            response['participantDtoList'],
-            response['numberOfParticipants']
-          );
+
+          const finalData = this.rectifyingParticipantData(participants);
+
+          params.successCallback(finalData, response['numberOfParticipants']);
         });
       });
 
     this.gridOptions.paginationPageSize = pageSize;
+  }
+
+  rectifyingParticipantData(participants) {
+    const groupedParticipant = groupBy(participants, 'email');
+    const result: any = [];
+    for (const item in groupedParticipant) {
+      const participant = groupedParticipant[item];
+      const obj = participant[0];
+      if (participant.length > 1) {
+        let points = 0;
+        participant.forEach((e) => {
+          points = points + e['points'];
+        });
+        obj['points'] = points;
+      }
+      result.push(obj);
+    }
+    return result;
   }
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
@@ -215,7 +234,9 @@ export class AdminDashboardComponent implements OnInit {
 
   quarterSetting(selectedYear: number) {
     if (selectedYear == this.currentYear) {
-      const currentMonth = new Date().getMonth();
+      const currentMonth = new Date().getMonth() + 1;
+      console.log('Month - ', currentMonth);
+
       switch (currentMonth) {
         case 1:
         case 2:
