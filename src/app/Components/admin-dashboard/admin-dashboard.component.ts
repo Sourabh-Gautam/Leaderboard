@@ -66,6 +66,7 @@ export class AdminDashboardComponent implements OnInit {
     },
     {
       field: 'points',
+      sortable: true,
       cellStyle: { fontSize: '16px' },
       filter: 'agNumberColumnFilter',
     },
@@ -73,7 +74,6 @@ export class AdminDashboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     defaultColDef: {
-      sortable: true,
       filter: true,
       minWidth: 200,
       resizable: true,
