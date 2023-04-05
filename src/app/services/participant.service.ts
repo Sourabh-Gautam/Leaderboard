@@ -6,10 +6,10 @@ import axios from 'axios';
 })
 export class ParticipantService {
   baseUrl = 'http://localhost:8082/api/v1/programs';
+  pdBaseUrl = 'http://localhost:8082/api/v1/participants-details';
   participants: any;
   programId: any;
   name: any;
-  constructor() {}
 
   async getAllParticipants(programId: number) {
     await axios
@@ -20,12 +20,40 @@ export class ParticipantService {
     return this.participants;
   }
 
-  async getParticipantDetails(email: string) {
+  async getParticipantByEmail(email: string) {
+    await axios.get(`${this.pdBaseUrl}/email/${email}`).then((response) => {
+      this.participants = response.data;
+    });
+    return this.participants;
+  }
+
+  async getParticipantByDesignation(value: string) {
     await axios
-      .get(`http://localhost:8082/api/v1/participants-contribution/${email}`)
+      .get(`${this.pdBaseUrl}/designation/${value}`)
       .then((response) => {
         this.participants = response.data;
       });
+    return this.participants;
+  }
+
+  async getParticipantByBU(value: string) {
+    await axios.get(`${this.pdBaseUrl}/bu/${value}`).then((response) => {
+      this.participants = response.data;
+    });
+    return this.participants;
+  }
+
+  async getParticipantByPS(value: string) {
+    await axios.get(`${this.pdBaseUrl}/ps/${value}`).then((response) => {
+      this.participants = response.data;
+    });
+    return this.participants;
+  }
+
+  async getParticipantByRM(value: string) {
+    await axios.get(`${this.pdBaseUrl}/rm/${value}`).then((response) => {
+      this.participants = response.data;
+    });
     return this.participants;
   }
 

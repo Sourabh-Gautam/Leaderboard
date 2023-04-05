@@ -4,13 +4,13 @@ import { Observable, map } from 'rxjs';
 import { ParticipantService } from 'src/app/services/participant.service';
 
 @Component({
-  selector: 'app-view-participant-contributions',
-  templateUrl: './view-participant-contributions.component.html',
-  styleUrls: ['./view-participant-contributions.component.css'],
+  selector: 'app-view-participnat-by-designation',
+  templateUrl: './view-participnat-by-designation.component.html',
+  styleUrls: ['./view-participnat-by-designation.component.css'],
 })
-export class ViewParticipantContributionsComponent implements OnInit {
+export class ViewParticipnatByDesignationComponent implements OnInit {
   state$: Observable<object>;
-  email: string;
+  value: string;
   participantDetails: any;
 
   constructor(
@@ -22,13 +22,13 @@ export class ViewParticipantContributionsComponent implements OnInit {
     this.state$ = this.activatedRoute.paramMap.pipe(
       map(() => window.history.state)
     );
-    this.state$.subscribe((e) => (this.email = e['email']));
+    this.state$.subscribe((e) => (this.value = e['value']));
     await this.participantService
-      .getParticipantByEmail(this.email)
+      .getParticipantByDesignation(this.value)
       .then((e) => {
         this.participantDetails = e;
       });
 
-    console.log('Pd - ', this.participantDetails[0]);
+    console.log('Designation - ', this.participantDetails[0]);
   }
 }

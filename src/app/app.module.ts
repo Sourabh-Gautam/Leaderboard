@@ -34,6 +34,10 @@ import { ViewProgramComponent } from './Components/view-program/view-program.com
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 import { ViewParticipantContributionsComponent } from './Components/view-participant-contributions/view-participant-contributions.component';
+import { ViewParticipnatByRmComponent } from './Components/view-participnat-by-rm/view-participnat-by-rm.component';
+import { ViewParticipnatByPsComponent } from './Components/view-participnat-by-ps/view-participnat-by-ps.component';
+import { ViewParticipnatByBuComponent } from './Components/view-participnat-by-bu/view-participnat-by-bu.component';
+import { ViewParticipnatByDesignationComponent } from './Components/view-participnat-by-designation/view-participnat-by-designation.component';
 // import 'ag-grid-enterprise';
 
 @NgModule({
@@ -66,6 +70,10 @@ import { ViewParticipantContributionsComponent } from './Components/view-partici
     EditProfileComponent,
     FooterComponent,
     ViewParticipantContributionsComponent,
+    ViewParticipnatByRmComponent,
+    ViewParticipnatByPsComponent,
+    ViewParticipnatByBuComponent,
+    ViewParticipnatByDesignationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<app-header></app-header>
+<body>
+  <div class="">
+    <div class="">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>
+                <b>Participant Details By Business Unit</b>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead class="bg-secondary text-light">
+            <tr>
+              <th>S.No</th>
+              <th>Employee Name</th>
+              <th>Designation</th>
+              <th>Resource Manager</th>
+              <th>Business Unit</th>
+              <th>Primary Skill</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contribution of participantDetails; index as i">
+              <td>{{ i + 1 }}</td>
+              <td>{{ contribution["participantName"] }}</td>
+              <td>{{ contribution["designation"] }}</td>
+              <td>{{ contribution["resourceManager"] }}</td>
+              <td>{{ contribution["businessUnit"] }}</td>
+              <td>{{ contribution["primarySkill"] }}</td>
+              <td>{{ contribution["points"] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+<app-footer></app-footer>

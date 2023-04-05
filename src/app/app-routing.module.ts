@@ -14,6 +14,10 @@ import { ViewContributortypeComponent } from './Components/view-contributortype/
 import { ViewParticipantComponent } from './Components/view-participant/view-participant.component';
 import { ViewProgramComponent } from './Components/view-program/view-program.component';
 import { ViewParticipantContributionsComponent } from './Components/view-participant-contributions/view-participant-contributions.component';
+import { ViewParticipnatByDesignationComponent } from './Components/view-participnat-by-designation/view-participnat-by-designation.component';
+import { ViewParticipnatByBuComponent } from './Components/view-participnat-by-bu/view-participnat-by-bu.component';
+import { ViewParticipnatByPsComponent } from './Components/view-participnat-by-ps/view-participnat-by-ps.component';
+import { ViewParticipnatByRmComponent } from './Components/view-participnat-by-rm/view-participnat-by-rm.component';
 
 const routes: Routes = [
   {
@@ -70,6 +74,22 @@ const routes: Routes = [
   {
     path: 'participant-contributions',
     component: ViewParticipantContributionsComponent,
+  },
+  {
+    path: 'participant-by-designation',
+    component: ViewParticipnatByDesignationComponent,
+  },
+  {
+    path: 'participant-by-bu',
+    component: ViewParticipnatByBuComponent,
+  },
+  {
+    path: 'participant-by-ps',
+    component: ViewParticipnatByPsComponent,
+  },
+  {
+    path: 'participant-by-rm',
+    component: ViewParticipnatByRmComponent,
   },
 ];
 @NgModule({
