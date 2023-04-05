@@ -13,6 +13,7 @@ import { ProgramTemplateComponent } from './Components/program-template/program-
 import { ViewContributortypeComponent } from './Components/view-contributortype/view-contributortype.component';
 import { ViewParticipantComponent } from './Components/view-participant/view-participant.component';
 import { ViewProgramComponent } from './Components/view-program/view-program.component';
+import { ViewParticipantContributionsComponent } from './Components/view-participant-contributions/view-participant-contributions.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'view-contributortype',
     component: ViewContributortypeComponent,
+  },
+  {
+    path: 'participant-contributions',
+    component: ViewParticipantContributionsComponent,
   },
 ];
 @NgModule({

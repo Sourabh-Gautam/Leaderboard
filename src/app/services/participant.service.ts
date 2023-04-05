@@ -16,7 +16,15 @@ export class ParticipantService {
       .get(`${this.baseUrl}/${programId}/participants`)
       .then((response) => {
         this.participants = response.data;
-        // console.log(response.data);
+      });
+    return this.participants;
+  }
+
+  async getParticipantDetails(email: string) {
+    await axios
+      .get(`http://localhost:8082/api/v1/participants-contribution/${email}`)
+      .then((response) => {
+        this.participants = response.data;
       });
     return this.participants;
   }

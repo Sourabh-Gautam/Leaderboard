@@ -96,6 +96,7 @@ export class ViewParticipantComponent implements OnInit {
         });
       };
     }
+    alert('Participants Added');
   }
   handleClickAddBulkParticipant(event) {
     const fileInputElement = document.querySelector(

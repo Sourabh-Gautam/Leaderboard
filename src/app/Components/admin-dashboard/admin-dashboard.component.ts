@@ -12,6 +12,7 @@ import {
 import { RequestWithFilterAndSort } from 'src/app/model/request-with-sort-filter';
 import { AgGridAngular } from 'ag-grid-angular';
 import { groupBy } from 'src/app/common.func';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -32,6 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   gridColumnApi: any;
   gridApi: any;
   public rowData = [];
+  constructor(private adminService: AdminService, private router: Router) {}
 
   public columnDefs: ColDef[] = [
     {
@@ -80,10 +82,11 @@ export class AdminDashboardComponent implements OnInit {
     },
     rowModelType: 'infinite',
     suppressHorizontalScroll: true,
-    onCellClicked: (event: CellClickedEvent) => console.log(event.column),
+    onCellClicked: (event: CellClickedEvent) =>
+      this.router.navigateByUrl('/participant-contributions', {
+        state: { email: event.data.email },
+      }),
   };
-
-  constructor(private adminService: AdminService) {}
 
   onGridReady(params: GridReadyEvent) {
     params.api.sizeColumnsToFit();
@@ -183,23 +186,22 @@ export class AdminDashboardComponent implements OnInit {
         response.subscribe((response) => {
           const participants = response['participantDtoList'];
           const totalRecords = response['numberOfParticipants'] + pageSize;
-          console.log('Final response - ', participants);
+
+          const finalData = this.rectifyingParticipantData(participants);
 
           if (sortFilterModel['colId'] == 'points') {
             if (sortFilterModel['sort'] === 'asc') {
-              participants.forEach(
+              finalData.forEach(
                 (e, i) => (e['rank'] = totalRecords - pageSize * pageNo - i)
               );
             } else {
-              participants.forEach(
+              finalData.forEach(
                 (e, i) => (e['rank'] = (pageNo - 1) * pageSize + i + 1)
               );
             }
           } else {
-            participants.forEach((e, i) => (e['rank'] = 0));
+            finalData.forEach((e, i) => (e['rank'] = 0));
           }
-
-          const finalData = this.rectifyingParticipantData(participants);
 
           params.successCallback(finalData, response['numberOfParticipants']);
         });
