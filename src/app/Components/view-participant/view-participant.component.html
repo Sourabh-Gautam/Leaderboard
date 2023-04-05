@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-sm-8">
               <h2>
-                <b>Participants in the Program-{{ programTitle }}</b>
+                <strong>Participants in the Program-{{ programTitle }}</strong>
               </h2>
             </div>
             <div class="col-sm-4">
@@ -85,7 +85,7 @@
                   class="edit"
                   (click)="handleEditParticipant(participant)"
                   title="Edit"
-                  ><i class="bx bxs-edit"></i
+                  ><em class="bx bxs-edit"></em
                 ></a>
 
                 <a
@@ -96,7 +96,7 @@
                     handleDeleteParticipant($event, participant.participantId)
                   "
                   title="Delete"
-                  ><i class="bx bxs-trash-alt"></i
+                  ><em class="bx bxs-trash-alt"></em
                 ></a>
                 <input type="hidden" value="{{ programId }}" />
               </td>
