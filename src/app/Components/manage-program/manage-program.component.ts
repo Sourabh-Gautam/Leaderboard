@@ -6,9 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./manage-program.component.css'],
 })
 export class ManageProgramComponent implements OnInit {
-  constructor() {
-    console.log(localStorage);
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

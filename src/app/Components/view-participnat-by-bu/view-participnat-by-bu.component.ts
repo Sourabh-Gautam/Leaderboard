@@ -11,6 +11,7 @@ import { ParticipantService } from 'src/app/services/participant.service';
 export class ViewParticipnatByBuComponent implements OnInit {
   state$: Observable<object>;
   value: string;
+  isAdmin: string | null = sessionStorage.getItem('admin');
   participantDetails: any;
 
   constructor(

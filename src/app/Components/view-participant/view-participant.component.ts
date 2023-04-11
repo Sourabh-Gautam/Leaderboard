@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
+import { dataExport } from 'src/app/common.func';
 import { ParticipantService } from 'src/app/services/participant.service';
 import { ProgramService } from 'src/app/services/program.service';
 
@@ -14,27 +16,25 @@ export class ViewParticipantComponent implements OnInit {
   programId: number;
   programTitle: string;
   weightage: any;
-  isEdit: boolean = false;
-  editPopup: boolean = false;
-  addPopup: boolean = false;
-  // totalRecords: any;
-  // page: Number = 1;
-  // data!: Array<any>;
+  isEdit = false;
+  editPopup = false;
+  addPopup = false;
   currentPage: any;
   data: Array<any>;
   totalRecords: number;
-  page: number = 1;
-  itemPerPage: number = 5;
+  page = 1;
+  itemPerPage = 5;
 
   constructor(
-    private router: ActivatedRoute,
+    private router: Router,
     private participantService: ParticipantService
   ) {
-    this.router.params.subscribe((value) => {
-      this.programId = value.id;
-      this.programTitle = value.title;
-      this.weightage = value.weightage;
-    });
+    const state = this.router.getCurrentNavigation()?.extras.state as object;
+    console.log('state', state);
+
+    this.programId = state['id'];
+    this.programTitle = state['title'];
+    this.weightage = state['weightage'];
 
     this.data = new Array<any>();
   }
@@ -97,6 +97,14 @@ export class ViewParticipantComponent implements OnInit {
       };
     }
     alert('Participants Added');
+  }
+
+  handleParticipantExport() {
+    const csvData = this.participants.map((e) => {
+      delete e['program'];
+      return e;
+    });
+    dataExport(csvData, 'participant-data');
   }
   handleClickAddBulkParticipant(event) {
     const fileInputElement = document.querySelector(

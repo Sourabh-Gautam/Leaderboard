@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ParticipantService } from 'src/app/services/participant.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,13 @@ export class LoginComponent implements OnInit {
   @Output() toggleFlag: EventEmitter<object> = new EventEmitter();
   loginForm!: FormGroup;
   submitted = false;
+  profile: object;
+  isAdmin: boolean;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private participantService: ParticipantService
+    private participantService: ParticipantService,
+    private profileService: ProfileService
   ) {}
 
   onClick() {
@@ -25,36 +29,35 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      userName: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
-  // onSubmit() {
-  //   this.submitted = true;
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   }
-  // }
-  handleLogin() {
+  async handleLogin() {
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
 
-    const username = document.querySelector('.username') as HTMLInputElement;
+    const email = document.querySelector('.email') as HTMLInputElement;
     const password = document.querySelector('.password') as HTMLInputElement;
 
-    this.participantService.name = username.value;
+    const emailVal = localStorage.getItem(email.value);
+    if (emailVal !== null) {
+      if (emailVal == password.value) {
+        await this.profileService
+          .getProfileByEmail(email.value)
+          .then((e) => (this.profile = e.data));
 
-    if (username.value === '' || password.value === '') {
-      return;
-    }
-    const lsValue = localStorage.getItem(username.value);
-
-    if (lsValue !== null) {
-      if (lsValue == password.value) {
-        sessionStorage.setItem('username', username.value);
-        this.router.navigate(['admin-dashboard']);
+        this.isAdmin = this.profile['admin'];
+        sessionStorage.setItem('username', this.profile['name']);
+        sessionStorage.setItem('email', this.profile['email']);
+        sessionStorage.setItem('admin', this.profile['admin']);
+        if (this.isAdmin) {
+          this.router.navigate(['admin-dashboard']);
+        } else {
+          this.router.navigate(['user-dashboard']);
+        }
       } else {
         alert('Wrong data');
       }

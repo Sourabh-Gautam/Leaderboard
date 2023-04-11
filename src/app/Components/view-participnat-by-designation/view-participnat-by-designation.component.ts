@@ -12,6 +12,7 @@ export class ViewParticipnatByDesignationComponent implements OnInit {
   state$: Observable<object>;
   value: string;
   participantDetails: any;
+  isAdmin: string | null = sessionStorage.getItem('admin');
 
   constructor(
     private activatedRoute: ActivatedRoute,

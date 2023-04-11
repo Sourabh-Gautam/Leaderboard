@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { dataExport } from 'src/app/common.func';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -30,8 +31,11 @@ export class ViewProfileComponent implements OnInit {
     this.addPopup = true;
   }
 
+  handleProfileExport() {
+    dataExport(this.profiles, 'profile-data');
+  }
+
   async handleEditProfile(profile) {
-    console.log(profile);
     this.profile = profile;
     this.editPopup = true;
   }

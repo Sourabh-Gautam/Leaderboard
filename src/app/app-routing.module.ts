@@ -1,10 +1,7 @@
-import { FunctionExpr } from '@angular/compiler';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddProgramTemplateComponent } from './Components/add-program-template/add-program-template.component';
 import { AddProgramComponent } from './Components/add-program/add-program.component';
 import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
-import { EditProgramTemplateComponent } from './Components/edit-program-template/edit-program-template.component';
 import { EditProgramComponent } from './Components/edit-program/edit-program.component';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { ManageProfileComponent } from './Components/manage-profile/manage-profile.component';
@@ -18,13 +15,15 @@ import { ViewParticipnatByDesignationComponent } from './Components/view-partici
 import { ViewParticipnatByBuComponent } from './Components/view-participnat-by-bu/view-participnat-by-bu.component';
 import { ViewParticipnatByPsComponent } from './Components/view-participnat-by-ps/view-participnat-by-ps.component';
 import { ViewParticipnatByRmComponent } from './Components/view-participnat-by-rm/view-participnat-by-rm.component';
+import { UserDashboardComponent } from './Components/user-dashboard/user-dashboard.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { MyContributionsComponent } from './Components/my-contributions/my-contributions.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
   },
-
   {
     path: 'program-template',
     component: ProgramTemplateComponent,
@@ -33,10 +32,6 @@ const routes: Routes = [
     path: 'add-program',
     component: AddProgramComponent,
   },
-  // {
-  //   path: 'add-program-template',
-  //   component: AddProgramTemplateComponent,
-  // },
   {
     path: 'view-program',
     component: ViewProgramComponent,
@@ -46,10 +41,6 @@ const routes: Routes = [
     path: 'edit-program',
     component: EditProgramComponent,
   },
-  // {
-  //   path: 'edit-program-template',
-  //   component: EditProgramTemplateComponent,
-  // },
 
   {
     path: 'manage-program',
@@ -64,12 +55,16 @@ const routes: Routes = [
     component: LandingPageComponent,
   },
   {
-    path: 'view-participant/:id/:title/:weightage',
+    path: 'view-participant',
     component: ViewParticipantComponent,
   },
   {
     path: 'view-contributortype',
     component: ViewContributortypeComponent,
+  },
+  {
+    path: 'my-contributions',
+    component: MyContributionsComponent,
   },
   {
     path: 'participant-contributions',
@@ -90,6 +85,14 @@ const routes: Routes = [
   {
     path: 'participant-by-rm',
     component: ViewParticipnatByRmComponent,
+  },
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+  },
+  {
+    path: '*',
+    component: HeaderComponent,
   },
 ];
 @NgModule({

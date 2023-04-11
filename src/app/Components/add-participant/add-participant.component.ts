@@ -40,9 +40,6 @@ export class AddParticipantComponent implements OnInit {
     this.username = sessionStorage.getItem('username');
   }
   async handleAddParticipant(value) {
-    console.log('Adding participant data :', value);
-
-    // let programTemplateId = event.currentTarget.nextSibling.value;
     await this.participantService
       .addparticipant(this.programId, value)
       .then((response) => {
@@ -95,9 +92,6 @@ export class AddParticipantComponent implements OnInit {
     if (flag) {
       this.designation = '';
     }
-  }
-  handleClick() {
-    console.log('hi');
   }
   onInput() {
     let i = 0;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { HeaderComponent } from './Components/header/header.component';
@@ -38,7 +38,9 @@ import { ViewParticipnatByRmComponent } from './Components/view-participnat-by-r
 import { ViewParticipnatByPsComponent } from './Components/view-participnat-by-ps/view-participnat-by-ps.component';
 import { ViewParticipnatByBuComponent } from './Components/view-participnat-by-bu/view-participnat-by-bu.component';
 import { ViewParticipnatByDesignationComponent } from './Components/view-participnat-by-designation/view-participnat-by-designation.component';
-// import 'ag-grid-enterprise';
+import { UserDashboardComponent } from './Components/user-dashboard/user-dashboard.component';
+import { UserHeaderComponent } from './Components/user-header/user-header.component';
+import { MyContributionsComponent } from './Components/my-contributions/my-contributions.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,9 @@ import { ViewParticipnatByDesignationComponent } from './Components/view-partici
     ViewParticipnatByPsComponent,
     ViewParticipnatByBuComponent,
     ViewParticipnatByDesignationComponent,
+    UserDashboardComponent,
+    UserHeaderComponent,
+    MyContributionsComponent,
   ],
   imports: [
     BrowserModule,

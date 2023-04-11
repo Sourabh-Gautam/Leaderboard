@@ -9,7 +9,6 @@ export class ParticipantService {
   pdBaseUrl = 'http://localhost:8082/api/v1/participants-details';
   participants: any;
   programId: any;
-  name: any;
 
   async getAllParticipants(programId: number) {
     await axios

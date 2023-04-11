@@ -55,13 +55,21 @@
                 class="form-control"
                 name="contributorType"
                 [(ngModel)]="participant.contributorType"
+                required
+                (change)="handleContributorChange($event)"
               >
-                <option hidden>{{ participant.contributorType }}</option>
+                <option
+                  *ngFor="let contributor of contributorTypeList"
+                  value="{{ contributor.contributerType }}"
+                >
+                  {{ contributor.contributerType }}
 
-                <option>winner</option>
-                <option>participant</option>
-                <option>organizer</option>
-                
+                  <input
+                    type="hidden"
+                    value="{{ contributor.points }}"
+                    id="{{ contributor.contributerType }}"
+                  />
+                </option>
               </select>
             </div>
             <div class="popupedit">
@@ -72,8 +80,7 @@
               <input
                 type="text"
                 name="points"
-                [(ngModel)]="participant.points"
-                value="{{ participant.points }}"
+                [(ngModel)]="points"
                 class="form-control"
                 placeholder="Points"
               />

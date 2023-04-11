@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { dataExport } from 'src/app/common.func';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { ProgramService } from 'src/app/services/program.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare const window: any;
 @Component({
   selector: 'app-view-program',
   templateUrl: './view-program.component.html',
@@ -15,14 +16,14 @@ export class ViewProgramComponent implements OnInit {
   programs: any = [];
   formModal: any;
   editModal: any;
-  editPopup: boolean = false;
-  addPopup: boolean = false;
+  editPopup = false;
+  addPopup = false;
   categoryList: any;
   program: any;
   data: Array<any>;
   totalRecords: number;
-  page: number = 1;
-  itemPerPage: number = 5;
+  page = 1;
+  itemPerPage = 5;
   constructor(
     private programService: ProgramService,
     private programTemplateService: ProgramTemplateService,
@@ -34,6 +35,10 @@ export class ViewProgramComponent implements OnInit {
 
   async handleAddProgram() {
     this.addPopup = true;
+  }
+
+  handleProgramExport() {
+    dataExport(this.programs, 'program-data');
   }
 
   async handleEditProgram(program) {
@@ -53,8 +58,8 @@ export class ViewProgramComponent implements OnInit {
   async getAllPrograms() {
     await this.programService.getAllPrograms().then((data) => {
       data.sort((a, b) => {
-        let ms = new Date(a.endDate).getTime();
-        let ms1 = new Date(b.endDate).getTime();
+        const ms = new Date(a.endDate).getTime();
+        const ms1 = new Date(b.endDate).getTime();
         return ms1 - ms;
       });
       this.programs = data;
@@ -64,7 +69,7 @@ export class ViewProgramComponent implements OnInit {
   }
 
   async handleDeleteProgram(event) {
-    let programId = event.currentTarget.nextSibling.value;
+    const programId = event.currentTarget.nextSibling.value;
     console.log(programId);
     await this.programService.deleteProgram(programId);
     this.getAllPrograms();
@@ -73,12 +78,13 @@ export class ViewProgramComponent implements OnInit {
   ngOnInit(): void {}
 
   handleViewParticipant(program) {
-    console.log('view program component', program);
-    this.router.navigate([
-      'view-participant',
-      program.programId,
-      program.title,
-      program.weightage,
-    ]);
+    console.log('view program component', program.programId);
+    this.router.navigate(['view-participant'], {
+      state: {
+        id: program.programId,
+        title: program.title,
+        weightage: program.weightage,
+      },
+    });
   }
 }

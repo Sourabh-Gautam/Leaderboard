@@ -1,0 +1,56 @@
+<div *ngIf="isAdmin == 'true'; else userHeader">
+  <app-header></app-header>
+</div>
+<ng-template #userHeader>
+  <app-user-header></app-user-header>
+</ng-template>
+<div *ngIf="zeroContribution; else elseBlock">
+  <h1 style="text-align: center; margin-bottom: 70vh">Oops! No contribution</h1>
+</div>
+<ng-template #elseBlock>
+  <body>
+    <div class="">
+      <div class="">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-8">
+                <h2>
+                  <b
+                    >{{ participantDetails[0]["participantName"] }} Contribution
+                    Details</b
+                  >
+                </h2>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered">
+            <thead class="bg-secondary text-light">
+              <tr>
+                <th>S.No</th>
+                <th>Program Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Contributer Type</th>
+                <th>Points</th>
+                <th>Awarded Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contribution of participantDetails; index as i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ contribution["program"][0]["title"] }}</td>
+                <td>{{ contribution["program"][0]["startDate"] }}</td>
+                <td>{{ contribution["program"][0]["endDate"] }}</td>
+                <td>{{ contribution["contributorType"] }}</td>
+                <td>{{ contribution["points"] }}</td>
+                <td>{{ contribution["awardedDate"] }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</ng-template>
+<app-footer></app-footer>
