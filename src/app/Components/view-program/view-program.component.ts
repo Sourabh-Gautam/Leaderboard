@@ -22,7 +22,12 @@ export class ViewProgramComponent implements OnInit {
   data: Array<any>;
   totalRecords: number;
   page: number = 1;
-  itemPerPage: number = 5;
+  itemsPerPageOptions = [
+    5, 10, 15, 20, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
+  ];
+
+  itemPerPage: number = 10;
+
   constructor(
     private programService: ProgramService,
     private programTemplateService: ProgramTemplateService,

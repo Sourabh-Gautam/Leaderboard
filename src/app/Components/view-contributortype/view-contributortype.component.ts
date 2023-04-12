@@ -12,6 +12,7 @@ export class ViewContributortypeComponent implements OnInit {
   addPopup: boolean;
   editPopup: boolean;
   contributortype: any;
+
   constructor(
     private contributorService: ContributorService,
     private router: Router

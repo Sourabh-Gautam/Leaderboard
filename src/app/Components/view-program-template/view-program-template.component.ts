@@ -15,11 +15,20 @@ export class ViewProgramTemplateComponent implements OnInit {
   isEdit: boolean = false;
   editPopup: boolean = false;
   addPopup: boolean = false;
+  data: Array<any>;
+  totalRecords: number;
+  page: number = 1;
+  itemsPerPageOptions = [
+    5, 10, 15, 20, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
+  ];
+
+  itemPerPage: number = 10;
   constructor(
     private programTemplateService: ProgramTemplateService,
     private router: Router
   ) {
     this.getAllProgramTemplate();
+    this.data = new Array<any>();
   }
 
   async getAllProgramTemplate() {
@@ -28,6 +37,8 @@ export class ViewProgramTemplateComponent implements OnInit {
       .then((response) => {
         this.programTemplates = response;
       });
+    this.data = this.programTemplates;
+    this.totalRecords = this.data.length;
   }
   handleAddProgramTemplate() {
     this.addPopup = true;

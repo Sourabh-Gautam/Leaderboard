@@ -19,6 +19,12 @@
               </button>
             </div>
           </div>
+          <label for="itemsPerPageSelect">Items per page:</label>
+          <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
+            <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+              {{ option }}
+            </option></select
+          ><br />
         </div>
         <table class="table table-bordered">
           <thead class="bg-secondary text-light">
@@ -30,9 +36,15 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody *ngFor="let programTemplate of programTemplates; index as i">
+          <tbody
+            *ngFor="
+              let programTemplate of programTemplates
+                | paginate : { itemsPerPage: itemPerPage, currentPage: page };
+              index as i
+            "
+          >
             <tr>
-              <td>{{ i + 1 }}</td>
+              <td>{{ (page - 1) * itemPerPage + i + 1 }}</td>
               <td>{{ programTemplate.category }}</td>
               <td>{{ programTemplate.description }}</td>
               <td>{{ programTemplate.weightage }}</td>
@@ -61,6 +73,11 @@
             </tr>
           </tbody>
         </table>
+        <div class="paginate">
+          <pagination-controls
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </div>
       </div>
     </div>
   </div>
