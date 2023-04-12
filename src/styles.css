@@ -4,6 +4,11 @@
 
 * {
   font-family: "Oswald Regular", Tahoma, sans-serif;
+  white-space: nowrap;
+}
+
+* ::-webkit-scrollbar {
+  display: none;
 }
 
 html,
@@ -44,15 +49,13 @@ body {
   text-align: right;
 }
 .button-style {
+  border: 1px lightgray solid;
 
-   border: 1px lightgray solid;
-  
-   border-radius: 4px;
-  
-   font-size: smaller;
-  
-   padding: 3px;
-  
-   background-color: whitesmoke;
-  
-  }
+  border-radius: 4px;
+
+  font-size: smaller;
+
+  padding: 3px;
+
+  background-color: whitesmoke;
+}
