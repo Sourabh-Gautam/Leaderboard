@@ -196,9 +196,6 @@ export class AdminDashboardComponent implements OnInit {
   };
 
   async getAllParticipants(pageNo, pageSize, sortFilterModel, params) {
-    console.log('Page no - ', pageNo);
-    console.log('Page size - ', pageSize);
-
     await this.adminService
       .getParticipants(pageNo, pageSize, sortFilterModel)
       .then((response) => {
@@ -206,45 +203,28 @@ export class AdminDashboardComponent implements OnInit {
           const participants = response['participantDtoList'];
           const totalRecords = response['numberOfParticipants'] + pageSize;
 
-          const finalData = this.rectifyingParticipantData(participants);
-
           if (sortFilterModel['colId'] == 'points') {
             if (sortFilterModel['sort'] === 'asc') {
-              finalData.forEach(
+              participants.forEach(
                 (e, i) => (e['rank'] = totalRecords - pageSize * pageNo - i)
               );
             } else {
-              finalData.forEach(
+              participants.forEach(
                 (e, i) => (e['rank'] = (pageNo - 1) * pageSize + i + 1)
               );
             }
           } else {
-            finalData.forEach((e, i) => (e['rank'] = 0));
+            participants.forEach((e, i) => (e['rank'] = 0));
           }
 
-          params.successCallback(finalData, response['numberOfParticipants']);
+          params.successCallback(
+            participants,
+            response['numberOfParticipants']
+          );
         });
       });
 
     this.gridOptions.paginationPageSize = pageSize;
-  }
-
-  rectifyingParticipantData(participants) {
-    const groupedParticipant = groupBy(participants, 'email');
-    const result: any = [];
-    for (const item in groupedParticipant) {
-      const participant = groupedParticipant[item];
-      const obj = participant[0];
-      if (participant.length > 1) {
-        let points = 0;
-        participant.forEach((e) => {
-          points = points + e['points'];
-        });
-        obj['points'] = points;
-      }
-      result.push(obj);
-    }
-    return result;
   }
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
