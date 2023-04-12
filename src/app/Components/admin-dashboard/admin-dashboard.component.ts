@@ -66,6 +66,7 @@ export class AdminDashboardComponent implements OnInit {
     },
     {
       field: 'points',
+      sortable: true,
       cellStyle: { fontSize: '16px' },
       filter: 'agNumberColumnFilter',
     },
@@ -73,7 +74,6 @@ export class AdminDashboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     defaultColDef: {
-      sortable: true,
       filter: true,
       minWidth: 200,
       resizable: true,
@@ -82,10 +82,29 @@ export class AdminDashboardComponent implements OnInit {
     },
     rowModelType: 'infinite',
     suppressHorizontalScroll: true,
-    onCellClicked: (event: CellClickedEvent) =>
-      this.router.navigateByUrl('/participant-contributions', {
-        state: { email: event.data.email },
-      }),
+    onCellClicked: (event: CellClickedEvent) => {
+      if (event.colDef.field === 'participantName') {
+        this.router.navigateByUrl('/participant-contributions', {
+          state: { email: event.data.email },
+        });
+      } else if (event.colDef.field === 'designation') {
+        this.router.navigateByUrl('/participant-by-designation', {
+          state: { value: event.value },
+        });
+      } else if (event.colDef.field === 'businessUnit') {
+        this.router.navigateByUrl('/participant-by-bu', {
+          state: { value: event.value },
+        });
+      } else if (event.colDef.field === 'resourceManager') {
+        this.router.navigateByUrl('/participant-by-rm', {
+          state: { value: event.value },
+        });
+      } else if (event.colDef.field === 'primarySkill') {
+        this.router.navigateByUrl('/participant-by-ps', {
+          state: { value: event.value },
+        });
+      }
+    },
   };
 
   onGridReady(params: GridReadyEvent) {

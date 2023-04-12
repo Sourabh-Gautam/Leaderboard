@@ -7,19 +7,19 @@
         </span>
       </div>
       <input
-        formControlName="userName"
+        formControlName="email"
         [ngClass]="{
-          'is-invalid': submitted && loginForm.controls.userName.errors
+          'is-invalid': submitted && loginForm.controls.email.errors
         }"
         type="text"
-        class="form-control username"
-        placeholder="Username"
+        class="form-control email"
+        placeholder="Email"
       />
       <div
-        *ngIf="submitted && loginForm.controls.userName.errors"
+        *ngIf="submitted && loginForm.controls.email.errors"
         class="text-danger"
       >
-        Username is Required
+        Email is Required
       </div>
     </div>
 

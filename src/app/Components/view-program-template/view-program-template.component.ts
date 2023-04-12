@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from 'axios';
+import { dataExport } from 'src/app/common.func';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { ProgramService } from 'src/app/services/program.service';
 
@@ -43,14 +44,16 @@ export class ViewProgramTemplateComponent implements OnInit {
   handleAddProgramTemplate() {
     this.addPopup = true;
   }
-
+  handleProgramTemplateExport() {
+    dataExport(this.programTemplates, 'program-template-data');
+  }
   handleEditProgramTemplate(programTemplate) {
     this.programTemplate = programTemplate;
     this.editPopup = true;
   }
 
   async handleDeleteProgramTemplate(event) {
-    let programTemplateId = event.currentTarget.nextSibling.value;
+    const programTemplateId = event.currentTarget.nextSibling.value;
     console.log(programTemplateId);
     await this.programTemplateService.deleteProgramTemplate(programTemplateId);
     this.getAllProgramTemplate();

@@ -1,0 +1,81 @@
+<app-user-header></app-user-header>
+<section class="participation-details" style="display: none"></section>
+<div class="rec-per-page-container">
+  <div class="export-btn">
+    <button class="button-style" (click)="onBtExport()">
+      Export<em class="bx bx-download px-2"></em>
+    </button>
+  </div>
+  <div class="date-range-filter">
+    <input
+      type="date"
+      name="startDate"
+      id="start-date-filter"
+      (change)="startDateFilter()"
+    />
+    <span> &#8594;</span>
+    <input
+      type="date"
+      name="endDate"
+      id="end-date-filter"
+      (change)="endDateFilter()"
+    />
+    <button class="button-style" (click)="resetDateFilter()">Reset</button>
+  </div>
+  <div class="year-quarter-filter">
+    <select
+      disabled
+      name="quarterFilter"
+      id="quarterFilter"
+      style="padding: 4px"
+      (change)="quarterFilterHandler()"
+    >
+      <option value="all">Full</option>
+      <option *ngFor="let q of quarterCodes" value="{{ q }}">
+        {{ q.toUpperCase() }}
+      </option>
+    </select>
+    <input
+      type="text"
+      min="1900"
+      max="{{ currentYear }}"
+      disabled
+      step="1"
+      name="year"
+      class="year-filter-style"
+      id="year"
+      value="Year"
+      (change)="quarterFilterHandler()"
+    />
+
+    <span
+      class="year-filter-activator"
+      (click)="quarterFilterClickHandler($event)"
+    >
+      &nbsp;
+    </span>
+  </div>
+  <div>
+    <span>Records per page</span>
+    <select class="rec-per-page" (change)="recPerPageHandler($event)">
+      <option selected value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="20">50</option>
+      <option value="20">100</option>
+    </select>
+  </div>
+</div>
+<ag-grid-angular
+  style="width: 100%; height: 400px; margin-top: 5px"
+  class="ag-theme-alpine admin-dashboard-grid"
+  [columnDefs]="columnDefs"
+  [rowData]="rowData"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)"
+  [pagination]="true"
+  [paginationPageSize]="defaultPageSize"
+  [cacheBlockSize]="defaultPageSize"
+></ag-grid-angular>
+<app-footer></app-footer>

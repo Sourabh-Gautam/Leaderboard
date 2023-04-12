@@ -10,12 +10,22 @@
             <div class="col-sm-4">
               <button
                 type="button"
-                class="btn btn-primary add-program-container"
+                class="btn btn-primary"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 (click)="handleAddProgram()"
               >
                 Add New
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleProgramExport()"
+              >
+                Export
               </button>
             </div>
           </div>

@@ -51,31 +51,6 @@
                   {{ option }}
                 </option>
               </datalist>
-              <!-- <input
-                type="text"
-                list="participantName"
-                name="participantName"
-                id="participantName"
-                [(ngModel)]="form.participantName"
-                class="form-control"
-                placeholder="participant name"
-                required=""
-                (change)="handleProfileChange($event)"
-              /> -->
-
-              <!-- <datalist id="participantName">
-                <option *ngFor="let temp of profileList">
-                  {{ temp.name }}
-                </option>
-              </datalist> -->
-              <!-- <select class="form-control" name="participantName" ngModel>
-                <option value="" disabled selected>
-                  ---ParticipantName---
-                </option>
-                <option *ngFor="let temp of profileList">
-                  {{ temp.name }}
-                </option>
-              </select> -->
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -98,7 +73,6 @@
                 <option
                   *ngFor="let contributor of contributorTypeList"
                   value="{{ contributor.contributerType }}"
-                  (select)="handleClick()"
                 >
                   {{ contributor.contributerType }}
 

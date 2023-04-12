@@ -10,12 +10,22 @@
             <div class="col-sm-4">
               <button
                 type="button"
-                class="btn btn-primary add-program-template-container"
+                class="btn btn-primary"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 (click)="handleAddProfile()"
               >
                 Add New
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleProfileExport()"
+              >
+                Export
               </button>
             </div>
           </div>
@@ -34,11 +44,11 @@
               <th>Name</th>
               <th>Email</th>
               <th>Primary Skill</th>
+              <th>Sub Skills</th>
               <th>Designation</th>
               <th>Business Unit</th>
               <th>Resource Manager</th>
               <th>Role</th>
-              <!-- <th>Practice Team</th> -->
               <th>Action</th>
             </tr>
           </thead>
@@ -54,11 +64,11 @@
               <td>{{ profile["name"] }}</td>
               <td>{{ profile["email"] }}</td>
               <td>{{ profile.primarySkill }}</td>
+              <td>{{ profile.subSkill ? profile.subSkill.join(', ') : '' }}</td>
               <td>{{ profile["designation"] }}</td>
               <td>{{ profile["businessUnit"] }}</td>
               <td>{{ profile["rmName"] }}</td>
               <td>{{ profile["admin"] ? "Admin" : "User" }}</td>
-              <!-- <td>{{ profile["practiceTeam"] }}</td> -->
               <td>
                 <a
                   class="edit"

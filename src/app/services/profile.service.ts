@@ -1,28 +1,41 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { ParticipantService } from './participant.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
+  
   baseUrl = 'http://localhost:8081/api/v1/profiles';
   profiles: any;
   designation: any;
-  participantList:any;
-  nameList:any;
+  participantList: any;
+  nameList: any;
   resourceManager: any;
   businessUnits: any;
   skill: any;
+  subSkill:any;
 
   constructor(private participantService: ParticipantService) {}
   async getAllSkill() {
     await axios.get(`${this.baseUrl}/Skills`).then((response) => {
       this.skill = response.data;
     });
-    console.log('inside profile service ', this.skill);
     return this.skill;
   }
+
+  // subSkill
+  async getAllSubSkill() {
+    await axios.get(`${this.baseUrl}/SubSkills`).then((response) => {
+      this.subSkill = response.data;
+    });
+    return this.subSkill;
+  }
+  // subSkill
 
   async getAllBusinessUnit() {
     await axios.get(`${this.baseUrl}/Business-Units`).then((response) => {
@@ -55,6 +68,10 @@ export class ProfileService {
     return await axios.post(this.baseUrl, formData);
   }
 
+  async getProfileByEmail(email: string) {
+    return await axios.get(`${this.baseUrl}/email/${email}`);
+  }
+
   async getAllDesignation() {
     await axios.get(`${this.baseUrl}/designations`).then((response) => {
       this.designation = response.data;
@@ -71,55 +88,22 @@ export class ProfileService {
     console.log('working');
   }
   async getAllProfilesForDropDown(programId: number) {
+    this.participantList =
+      this.participantService.getAllParticipants(programId);
 
-      this.participantList =
-    
-       this.participantService.getAllParticipants(programId);
-    
-    
-    
-    
-      await axios.get(this.baseUrl).then((response) => {
-    
-       this.profiles = response.data;
-    
-      });
-    
-    
-    
-    
-      this.participantList.then((data) => {
-    
-       this.nameList = data;
-    
-    
-    
-    
-       console.log(this.profiles);
-    
-    
-    
-    
-       for (let i = 0; i < this.profiles.length; i++) {
-    
+    await axios.get(this.baseUrl).then((response) => {
+      this.profiles = response.data;
+    });
+    this.participantList.then((data) => {
+      this.nameList = data;
+      for (let i = 0; i < this.profiles.length; i++) {
         for (let j = 0; j < this.nameList.length; j++) {
-    
-         if (this.profiles[i].name == this.nameList[j].participantName) {
-    
-          this.profiles.splice(i, 1);
-    
-         }
-    
+          if (this.profiles[i].name == this.nameList[j].participantName) {
+            this.profiles.splice(i, 1);
+          }
         }
-    
-       }
-    
-      });
-    
-    
-    
-    
-      return this.profiles;
-    
-     }
+      }
+    });
+    return this.profiles;
+  }
 }

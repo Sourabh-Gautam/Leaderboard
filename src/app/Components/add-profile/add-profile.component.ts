@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import Swal from 'sweetalert2';
@@ -10,10 +12,10 @@ declare let window: any;
 export class AddProfileComponent implements OnInit {
   add: any;
   designations: any;
-  practiceTeam = 5;
   ResourceManager: any;
   BusinessUnit: any;
   primarySkill: any;
+  subSkill: any;
   email:any;
   form = {
     name: '',
@@ -34,10 +36,20 @@ export class AddProfileComponent implements OnInit {
   async getSkills() {
     this.profileService.getAllSkill().then((data) => {
       this.primarySkill = data;
-      console.log('ksfks', data);
+      console.log('data of primary Skill:', this.primarySkill);
     });
-    console.log('inside add component', this.primarySkill);
+    // console.log('inside add component', this.primarySkill);
   }
+
+  // sub Skill
+  async getSubSkills() {
+    this.profileService.getAllSubSkill().then((data) => {
+      this.subSkill = data;
+      console.log('data of Sub Skill: ', this.subSkill);
+    });
+    // console.log('inside add component', this.subSkill);
+  }
+  // subSkill
   async getBusinessUnit() {
     this.profileService.getAllBusinessUnit().then((data) => {
       this.BusinessUnit = data;
@@ -45,6 +57,11 @@ export class AddProfileComponent implements OnInit {
   }
   async handleAddProfile(formData) {
     console.log('haddle add profile data', formData);
+    const subskills : any[] = [];
+    formData.subSkill.forEach(element => subskills.push(element['subSkillName']));
+    console.log('Sub Skills', subskills);
+    formData['subSkill'] = subskills;
+
     await this.profileService
       .addProfile(formData)
       .then((response) => {
@@ -67,6 +84,7 @@ export class AddProfileComponent implements OnInit {
     this.add.show();
     this.getDesignations();
     this.getSkills();
+    this.getSubSkills();
     this.getResourceManager();
     console.log('snekaaa', this.getSkills());
     this.getBusinessUnit();

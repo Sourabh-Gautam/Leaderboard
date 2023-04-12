@@ -11,12 +11,22 @@
             <div class="col-sm-4">
               <button
                 type="button"
-                class="btn btn-primary add-program-template-container"
+                class="btn btn-primary"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 (click)="handleAddContributorType()"
               >
                 Add New
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleContributorTypeExport()"
+              >
+                Export
               </button>
             </div>
           </div>

@@ -103,8 +103,12 @@ table.table td .add {
   display: none;
 }
 
-.add-program-template-container {
+#participant-csv {
+  height: 0;
+  width: 0;
+}
+
+.view-participant-actions {
   display: flex;
   justify-content: space-between;
-  margin-left: auto;
 }

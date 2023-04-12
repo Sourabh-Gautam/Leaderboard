@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { dataExport } from 'src/app/common.func';
 import { ContributorService } from 'src/app/services/contributor.service';
 
 @Component({
@@ -32,6 +33,10 @@ export class ViewContributortypeComponent implements OnInit {
   }
   handleAddContributortype() {
     this.addPopup = true;
+  }
+
+  handleContributorTypeExport() {
+    dataExport(this.contributorTypeList, 'contributor-type-data');
   }
 
   handleEditContributortype(contributortype) {

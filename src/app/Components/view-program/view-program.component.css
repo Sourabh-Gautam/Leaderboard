@@ -85,11 +85,7 @@ table.table .form-control.error {
 table.table td .add {
   display: none;
 }
-.add-program-container {
-  display: flex;
-  justify-content: space-between;
-  margin-left: auto;
-}
+
 .actions {
   width: 110px;
 }

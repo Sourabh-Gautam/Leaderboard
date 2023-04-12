@@ -104,9 +104,3 @@ table.table .form-control.error {
 table.table td .add {
   display: none;
 }
-
-.add-program-template-container {
-  display: flex;
-  justify-content: space-between;
-  margin-left: auto;
-}
