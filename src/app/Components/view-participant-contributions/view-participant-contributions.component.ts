@@ -12,6 +12,7 @@ export class ViewParticipantContributionsComponent implements OnInit {
   state$: Observable<object>;
   email: string;
   participantDetails: any;
+  isAdmin: string | null = sessionStorage.getItem('admin');
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +25,7 @@ export class ViewParticipantContributionsComponent implements OnInit {
     );
     this.state$.subscribe((e) => (this.email = e['email']));
     await this.participantService
-      .getParticipantDetails(this.email)
+      .getParticipantByEmail(this.email)
       .then((e) => {
         this.participantDetails = e;
       });

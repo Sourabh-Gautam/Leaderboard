@@ -10,28 +10,45 @@
                 <strong>Participants in the Program-{{ programTitle }}</strong>
               </h2>
             </div>
-            <div class="col-sm-4">
-              <button
-                type="button"
-                class="btn btn-primary add-program-template-container"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                (click)="handleAddParticipant()"
-              >
-                Add New
-              </button>
-            </div>
-            <div class="col-sm-4 bulk-container">
-              <button (click)="handleClickAddBulkParticipant($event)">
-                Add bulk
-              </button>
-              <input
-                type="file"
-                accept=".csv"
-                id="participant-csv"
-                (change)="handleAddBulkParticipant($event)"
-                style="visibility: hidden"
-              />
+            <div class="col-sm-4 view-participant-actions">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-primary add-program-template-container"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  (click)="handleAddParticipant()"
+                >
+                  Add New
+                </button>
+                &nbsp;
+                <button
+                  (click)="handleClickAddBulkParticipant($event)"
+                  class="btn btn-danger"
+                >
+                  Add bulk
+                  <input
+                    type="file"
+                    accept=".csv"
+                    id="participant-csv"
+                    (change)="handleAddBulkParticipant($event)"
+                    style="visibility: hidden"
+                  />
+                </button>
+                &nbsp;
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  (click)="handleParticipantExport()"
+                >
+                  Export
+                </button>
+              </div>
+              <a routerLink="../manage-program" title="Back"
+                ><i class="bx bx-arrow-back"></i
+              ></a>
             </div>
           </div>
         </div>
@@ -123,6 +140,7 @@
     <app-edit-participant
       [programId]="programId"
       [participant]="participant"
+      [weightage]="weightage"
       (closePopup)="closeEditPopUp()"
     ></app-edit-participant>
   </div>

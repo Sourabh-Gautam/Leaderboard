@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       userName: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
@@ -31,7 +32,7 @@ export class SignupComponent implements OnInit {
     }
 
     if (form.value.password === form.value.confirmPassword) {
-      localStorage.setItem(form.value.userName, form.value.password);
+      localStorage.setItem(form.value.email, form.value.password);
       Swal.fire('Success');
     } else {
       Swal.fire('Wrong inputs');

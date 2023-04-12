@@ -27,6 +27,30 @@
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1"
+          ><em class="bx bxs-user" style="font-size: 34px"> </em>
+        </span>
+      </div>
+      <input
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid': submitted && registerForm.controls.email.errors
+        }"
+        type="text"
+        class="form-control email"
+        placeholder="Email"
+      />
+
+      <div
+        *ngIf="submitted && registerForm.controls.userName.errors"
+        class="text-danger"
+      >
+        Email is Required
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"
           ><em class="bx bxs-lock-alt" style="font-size: 34px"> </em>
         </span>
       </div>
