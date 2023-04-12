@@ -29,6 +29,12 @@
               </button>
             </div>
           </div>
+          <label for="itemsPerPageSelect">Items per page:</label>
+          <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
+            <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+              {{ option }}
+            </option></select
+          ><br />
         </div>
         <table class="table table-bordered">
           <thead class="bg-secondary text-light">

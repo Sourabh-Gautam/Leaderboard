@@ -73,6 +73,26 @@
               </select>
             </div>
 
+            <!-- SubSkill -->
+            <div class="popupedit">
+              <label for="SubSkill"> Sub Skills</label>
+            </div>
+            <div class="input-group mb-3">
+              <!-- <select
+                class="form-control"
+                name="SubSkill"
+                [(ngModel)]="profile.subSkill" -->
+                <select multiple class="form-control" name="subSkill" ngModel required multiple>
+                  <option value="" disabled hidden>
+                  </option>
+              >
+              <option *ngFor="let ss of subSkill" [ngValue]="ss">{{ ss.subSkillName }}</option>
+                <!-- <option *ngFor="let dg of primarySkill">
+                  {{ dg.skillName }}
+                </option> -->
+              </select>
+            </div>
+
             <div class="popupedit">
               <label for="name"> Designation</label>
             </div>

@@ -38,6 +38,7 @@ export class AddProgramComponent implements OnInit {
       document.querySelector<HTMLInputElement>('.weightage')?.value;
 
     value.weightage = Number(weightage);
+    console.log('ts file data', value);
 
     await this.programService
       .addProgram(value)

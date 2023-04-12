@@ -21,6 +21,8 @@ export class ProgramService {
   }
 
   async addProgram(formData) {
+    console.log('add program serveice', formData);
+
     return await axios.post(this.baseUrl, formData);
   }
 

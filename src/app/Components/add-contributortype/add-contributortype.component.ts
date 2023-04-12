@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ContributorService } from 'src/app/services/contributor.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare let window: any;
 @Component({
   selector: 'app-add-contributortype',
   templateUrl: './add-contributortype.component.html',
