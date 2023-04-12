@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import Swal from 'sweetalert2';
@@ -17,6 +20,7 @@ export class EditProfileComponent implements OnInit {
   ResourceManager: any;
   BusinessUnit: any;
   primarySkill: any;
+  subSkill: any;
   constructor(private profileService: ProfileService) {}
 
   async getDesignations() {
@@ -36,6 +40,13 @@ export class EditProfileComponent implements OnInit {
     });
     console.log('inside add component', this.primarySkill);
   }
+  async getSubSkills() {
+    this.profileService.getAllSubSkill().then((data) => {
+      this.subSkill = data;
+      console.log('ksfks', data);
+    });
+    console.log('inside add component', this.subSkill);
+  }
   async getBusinessUnit() {
     this.profileService.getAllBusinessUnit().then((data) => {
       this.BusinessUnit = data;
@@ -45,6 +56,10 @@ export class EditProfileComponent implements OnInit {
     console.log('sneka', value.resourceManager);
     console.log('Handler called');
     console.log('Profile', this.profile);
+    const subskills : any[] = [];
+    value.subSkill.forEach(element => subskills.push(element['subSkillName']));
+    console.log('Sub Skills', subskills);
+    value['subSkill'] = subskills;
 
     await this.profileService
       .editProfile(value, this.profile.id)
@@ -73,6 +88,7 @@ export class EditProfileComponent implements OnInit {
       document.getElementById('editModal')
     );
     this.getSkills();
+    this.getSubSkills();
     this.getBusinessUnit();
     this.getResourceManager();
     this.edit.show();

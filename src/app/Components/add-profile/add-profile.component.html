@@ -85,6 +85,30 @@
               </select>
             </div>
 
+            <!-- Sub Skill code -->
+
+            <label>--Sub Skills--</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"
+                  ><em class="bx bxs-detail" style="font-size: 34px"> </em>
+                </span>
+              </div>
+
+              <select multiple class="form-control" name="subSkill" ngModel required multiple>
+                <option value="" disabled hidden>
+                </option>
+
+                <!-- <option *ngFor="let ss of subSkill" >
+                  {{ ss.subSkillName}}
+                </option>  -->
+                <option *ngFor="let ss of subSkill" [ngValue]="ss">{{ ss.subSkillName }}</option>
+                
+              </select>
+            </div>
+
+            <!-- Sub Skill code -->
+
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"

@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { ParticipantService } from './participant.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
+  
   baseUrl = 'http://localhost:8081/api/v1/profiles';
   profiles: any;
   designation: any;
@@ -14,6 +18,7 @@ export class ProfileService {
   resourceManager: any;
   businessUnits: any;
   skill: any;
+  subSkill:any;
 
   constructor(private participantService: ParticipantService) {}
   async getAllSkill() {
@@ -23,6 +28,15 @@ export class ProfileService {
     console.log('inside profile service ', this.skill);
     return this.skill;
   }
+
+  // subSkill
+  async getAllSubSkill() {
+    await axios.get(`${this.baseUrl}/SubSkills`).then((response) => {
+      this.subSkill = response.data;
+    });
+    return this.subSkill;
+  }
+  // subSkill
 
   async getAllBusinessUnit() {
     await axios.get(`${this.baseUrl}/Business-Units`).then((response) => {
