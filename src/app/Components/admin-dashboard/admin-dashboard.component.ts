@@ -26,6 +26,7 @@ export class AdminDashboardComponent implements OnInit {
   pageNo = 1;
   sortBy = 'points';
   sortOrder = 'desc';
+  lastRank = 1;
   currentYear = new Date().getFullYear();
   quarterCodes: string[] = [];
 
@@ -205,13 +206,37 @@ export class AdminDashboardComponent implements OnInit {
 
           if (sortFilterModel['colId'] == 'points') {
             if (sortFilterModel['sort'] === 'asc') {
-              participants.forEach(
-                (e, i) => (e['rank'] = totalRecords - pageSize * pageNo - i)
-              );
+              let prevRank = 1;
+              let prevPoints = -1;
+              let count = 0;
+              participants.forEach((e, i) => {
+                if (prevPoints === e['points']) {
+                  count++;
+                  e['rank'] = prevRank;
+                } else {
+                  const rank = totalRecords - pageSize * pageNo - i - count;
+                  e['rank'] = rank;
+                  prevPoints = e['points'];
+                  prevRank = rank;
+                }
+              });
             } else {
-              participants.forEach(
-                (e, i) => (e['rank'] = (pageNo - 1) * pageSize + i + 1)
-              );
+              let prevRank = 1;
+              let prevPoints = -1;
+              let count = 0;
+              let rank = 0;
+              participants.forEach((e, i) => {
+                if (prevPoints === e['points']) {
+                  count++;
+                  e['rank'] = prevRank;
+                } else {
+                  rank = this.lastRank + i - count;
+                  e['rank'] = rank;
+                  prevPoints = e['points'];
+                  prevRank = rank;
+                }
+              });
+              this.lastRank = rank;
             }
           } else {
             participants.forEach((e, i) => (e['rank'] = 0));

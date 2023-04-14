@@ -23,23 +23,17 @@ export class ViewParticipantComponent implements OnInit {
   data: Array<any>;
   totalRecords: number;
 
-  page: number = 1;
+  page = 1;
   itemsPerPageOptions = [
     5, 10, 15, 20, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
   ];
 
-  itemPerPage: number = 10;
+  itemPerPage = 10;
 
-  constructor(
-    private router: Router,
-    private participantService: ParticipantService
-  ) {
-    const state = this.router.getCurrentNavigation()?.extras.state as object;
-    console.log('state', state);
-
-    this.programId = state['id'];
-    this.programTitle = state['title'];
-    this.weightage = state['weightage'];
+  constructor(private participantService: ParticipantService) {
+    this.programId = Number(sessionStorage.getItem('id'));
+    this.programTitle = sessionStorage.getItem('title') as string;
+    this.weightage = sessionStorage.getItem('weightage');
 
     this.data = new Array<any>();
   }
@@ -47,8 +41,8 @@ export class ViewParticipantComponent implements OnInit {
   handleViewParticipant(programId) {
     this.participantService.getAllParticipants(programId).then((data) => {
       data.sort((a, b) => {
-        let ms = new Date(a.awardedDate).getTime();
-        let ms1 = new Date(b.awardedDate).getTime();
+        const ms = new Date(a.awardedDate).getTime();
+        const ms1 = new Date(b.awardedDate).getTime();
         return ms1 - ms;
       });
 

@@ -84,13 +84,9 @@ export class ViewProgramComponent implements OnInit {
   ngOnInit(): void {}
 
   handleViewParticipant(program) {
-    console.log('view program component', program.programId);
-    this.router.navigate(['view-participant'], {
-      state: {
-        id: program.programId,
-        title: program.title,
-        weightage: program.weightage,
-      },
-    });
+    sessionStorage.setItem('id', program.programId);
+    sessionStorage.setItem('title', program.title);
+    sessionStorage.setItem('weightage', program.weightage);
+    this.router.navigate(['view-participant']);
   }
 }
