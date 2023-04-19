@@ -21,13 +21,13 @@
               *ngIf="isAdmin == 'true'; else elseBlock"
             >
               <a routerLink="../admin-dashboard" title="Back"
-                ><i class="bx bx-arrow-back"></i
+                ><em class="bx bx-arrow-back"></em
               ></a>
             </div>
             <ng-template #elseBlock>
               <div class="col-sm-4" style="text-align: end">
                 <a routerLink="../user-dashboard" title="Back"
-                  ><i class="bx bx-arrow-back"></i
+                  ><em class="bx bx-arrow-back"></em
                 ></a>
               </div>
             </ng-template>
