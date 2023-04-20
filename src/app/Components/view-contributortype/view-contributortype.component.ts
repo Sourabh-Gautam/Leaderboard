@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { dataExport } from 'src/app/common.func';
@@ -15,7 +16,7 @@ export class ViewContributortypeComponent implements OnInit {
   contributortype: any;
 
   constructor(
-    private contributorService: ContributorService,
+    public contributorService: ContributorService,
     private router: Router
   ) {}
   handleAddContributorType() {

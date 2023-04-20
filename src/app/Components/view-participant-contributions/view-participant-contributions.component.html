@@ -24,17 +24,23 @@
               *ngIf="isAdmin == 'true'; else elseBlock"
             >
               <a routerLink="../admin-dashboard" title="Back"
-                ><em class="bx bx-arrow-back"></em
+                ><i class="bx bx-arrow-back"></i
               ></a>
             </div>
             <ng-template #elseBlock>
               <div class="col-sm-4" style="text-align: end">
                 <a routerLink="../user-dashboard" title="Back"
-                  ><em class="bx bx-arrow-back"></em
+                  ><i class="bx bx-arrow-back"></i
                 ></a>
               </div>
             </ng-template>
           </div>
+          <label for="itemsPerPageSelect">Items per page:</label>
+          <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
+            <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+              {{ option }}
+            </option></select
+          ><br />
         </div>
 
         <table class="table table-bordered">
@@ -50,8 +56,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let contribution of participantDetails; index as i">
-              <td>{{ i + 1 }}</td>
+            <tr
+              *ngFor="
+                let contribution of participantDetails
+                  | paginate : { itemsPerPage: itemPerPage, currentPage: page };
+                index as i
+              "
+            >
+              <td>{{ (page - 1) * itemPerPage + i + 1 }}</td>
               <td>{{ contribution["program"][0]["title"] }}</td>
               <td>{{ contribution["program"][0]["startDate"] }}</td>
               <td>{{ contribution["program"][0]["endDate"] }}</td>
@@ -61,6 +73,11 @@
             </tr>
           </tbody>
         </table>
+        <div class="paginate">
+          <pagination-controls
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </div>
       </div>
     </div>
   </div>

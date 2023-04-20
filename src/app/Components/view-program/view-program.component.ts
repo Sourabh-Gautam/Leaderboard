@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import axios from 'axios';
 import { dataExport } from 'src/app/common.func';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { ProgramService } from 'src/app/services/program.service';
-import Swal from 'sweetalert2';
 declare const window: any;
 @Component({
   selector: 'app-view-program',
@@ -33,7 +34,7 @@ export class ViewProgramComponent implements OnInit {
   constructor(
     private programService: ProgramService,
     private programTemplateService: ProgramTemplateService,
-    private router: Router
+    public router: Router
   ) {
     this.getAllPrograms();
     this.data = new Array<any>();
