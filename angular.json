@@ -94,8 +94,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
             "scripts": [],
-            "codeCoverage": true,
-            "codeCoverageExclude": ["src/app/services/*"]
+            "codeCoverage": true
           }
         }
       }

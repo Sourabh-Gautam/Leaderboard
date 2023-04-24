@@ -90,10 +90,7 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
     AgGridModule,
     HttpClientModule,
   ],
-  exports:[
-HeaderComponent,
-FooterComponent
-  ],
+
   providers: [AdminService],
   bootstrap: [AppComponent],
 })
