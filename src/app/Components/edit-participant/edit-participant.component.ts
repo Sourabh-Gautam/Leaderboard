@@ -55,15 +55,15 @@ export class EditParticipantComponent implements OnInit {
 
     this.points = Number(point) * this.weightage;
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.edit = new window.bootstrap.Modal(
       document.getElementById('editModal')
     );
-    this.contributorService.getAllContributorTypes().then((data: any) => {
+    await this.contributorService.getAllContributorTypes().then((data: any) => {
       this.contributorTypeList = data;
     });
     this.edit.show();
-    this.profileService.getAllProfiles().then((data: any) => {
+    await this.profileService.getAllProfiles().then((data: any) => {
       this.profileList = data;
     });
     this.points = this.participant.points;

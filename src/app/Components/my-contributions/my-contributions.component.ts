@@ -9,11 +9,15 @@ import { ParticipantService } from 'src/app/services/participant.service';
 })
 export class MyContributionsComponent implements OnInit {
   email: string;
+  currentYear : number;
+  points = 0;
   zeroContribution = false;
-  participantDetails: any;
+  participantDetails: any[];
   isAdmin: string | null = sessionStorage.getItem('admin');
 
-  constructor(private participantService: ParticipantService) {}
+  constructor(private participantService: ParticipantService) {
+    this.currentYear = new Date().getFullYear();
+  }
 
   async ngOnInit() {
     this.email = sessionStorage.getItem('email') as string;
@@ -24,6 +28,12 @@ export class MyContributionsComponent implements OnInit {
           this.zeroContribution = true;
         } else {
           this.participantDetails = e;
+          console.log('Participnat Details :', this.participantDetails );
+          this.participantDetails.map(x => {
+            this.points += x['points'];
+            console.log(x['points']);
+          })
+
         }
       });
   }

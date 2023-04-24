@@ -23,18 +23,18 @@ export class AddProfileComponent implements OnInit {
   @Output() onClose = new EventEmitter<boolean>();
   constructor(private profileService: ProfileService) {}
   async getDesignations() {
-    this.profileService.getAllDesignation().then((data) => {
+    await this.profileService.getAllDesignation().then((data) => {
       this.designations = data;
     });
   }
   async getResourceManager() {
-    this.profileService.getAllResourceManager().then((data) => {
+    await this.profileService.getAllResourceManager().then((data) => {
       this.ResourceManager = data;
       console.log('data of resourcemanager:', this.ResourceManager);
     });
   }
   async getSkills() {
-    this.profileService.getAllSkill().then((data) => {
+    await this.profileService.getAllSkill().then((data) => {
       this.primarySkill = data;
       console.log('data of primary Skill:', this.primarySkill);
     });
@@ -43,7 +43,7 @@ export class AddProfileComponent implements OnInit {
 
   // sub Skill
   async getSubSkills() {
-    this.profileService.getAllSubSkill().then((data) => {
+    await this.profileService.getAllSubSkill().then((data) => {
       this.subSkill = data;
       console.log('data of Sub Skill: ', this.subSkill);
     });
@@ -51,7 +51,7 @@ export class AddProfileComponent implements OnInit {
   }
   // subSkill
   async getBusinessUnit() {
-    this.profileService.getAllBusinessUnit().then((data) => {
+    await this.profileService.getAllBusinessUnit().then((data) => {
       this.BusinessUnit = data;
     });
   }
@@ -77,7 +77,7 @@ export class AddProfileComponent implements OnInit {
       .finally(() => {
         this.handleClosePopup();
       });
-    this.designations();
+    // this.designations();
   }
   ngOnInit(): void {
     this.add = new window.bootstrap.Modal(document.getElementById('addModal'));

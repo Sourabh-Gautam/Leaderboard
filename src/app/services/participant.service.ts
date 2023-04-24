@@ -20,11 +20,12 @@ export class ParticipantService {
   }
 
   async getParticipantByEmail(email: string) {
-    await axios.get(`${this.pdBaseUrl}/email/${email}`).then((response) => {
-      this.participants = response.data;
-    });
+    const response = await axios.get(`${this.pdBaseUrl}/email/${email}`);
+     this.participants = response.data.sort((a, b) => {
+     return b.awardedDate.localeCompare(a.awardedDate);
+     });
     return this.participants;
-  }
+    }
 
   async getParticipantByDesignation(value: string) {
     await axios
