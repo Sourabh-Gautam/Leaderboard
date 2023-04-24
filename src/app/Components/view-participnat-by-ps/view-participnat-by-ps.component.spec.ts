@@ -2,6 +2,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { ParticipantService } from 'src/app/services/participant.service';
 
 import { ViewParticipnatByPsComponent } from './view-participnat-by-ps.component';
