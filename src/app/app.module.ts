@@ -49,6 +49,7 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
     AppComponent,
     LandingPageComponent,
     HeaderComponent,
+    FooterComponent,
     LoginComponent,
     SignupComponent,
     ManageProgramComponent,
@@ -63,7 +64,6 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
     ViewProgramComponent,
     ManageProfileComponent,
     ViewProfileComponent,
-
     AddProfileComponent,
     ViewParticipantComponent,
     AddParticipantComponent,
@@ -72,7 +72,6 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
     AddContributortypeComponent,
     EditContributortypeComponent,
     EditProfileComponent,
-    FooterComponent,
     ViewParticipantContributionsComponent,
     ViewParticipnatByRmComponent,
     ViewParticipnatByPsComponent,
@@ -90,6 +89,10 @@ import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dash
     NgxPaginationModule,
     AgGridModule,
     HttpClientModule,
+  ],
+  exports:[
+HeaderComponent,
+FooterComponent
   ],
   providers: [AdminService],
   bootstrap: [AppComponent],

@@ -26,6 +26,12 @@
                 </h2>
               </div>
             </div>
+            <label for="itemsPerPageSelect">Items per page:</label>
+            <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
+              <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+                {{ option }}
+              </option></select
+            ><br />
           </div>
           <table class="table table-bordered">
             <thead class="bg-secondary text-light">
@@ -40,7 +46,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let contribution of participantDetails; index as i">
+              <tr 
+              *ngFor="
+                let contribution of participantDetails
+                  | paginate : { itemsPerPage: itemPerPage, currentPage: page };
+                index as i
+              "
+            >
+              <!-- <tr *ngFor="let contribution of participantDetails; index as i"> -->
                 <td class 
                 = "centre-align">{{ i + 1 }}</td>
                 <td>{{ contribution["program"][0]["title"] }}</td>
