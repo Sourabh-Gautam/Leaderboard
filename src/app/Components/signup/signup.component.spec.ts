@@ -44,9 +44,9 @@ describe('SignupComponent', () => {
     const form = {
       value: {
         userName: 'Test User',
-        email: 'test@example.com',
-        password: 'password',
-        confirmPassword: 'password',
+        email: '',
+        password: '',
+        confirmPassword: '',
       },
       invalid: false,
     };
