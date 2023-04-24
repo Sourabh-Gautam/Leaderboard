@@ -16,9 +16,6 @@ describe('AddProgramComponent', () => {
   beforeEach(async () => {
     mockProgramService = jasmine.createSpyObj(['addProgram']);
     programTemplateServiceSpy = jasmine.createSpyObj(['getAllProgramTemplate']);
-    // jasmine.createSpyObj('ProgramTemplateService', [
-    //   'getAllProgramTemplate',
-    // ]);
     const modalMock = {
       show: jasmine.createSpy('show'),
       hide: jasmine.createSpy('hide'),

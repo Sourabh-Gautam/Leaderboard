@@ -21,13 +21,13 @@
               *ngIf="isAdmin == 'true'; else elseBlock"
             >
               <a routerLink="../admin-dashboard" title="Back"
-                ><i class="bx bx-arrow-back"></i
+                ><em class="bx bx-arrow-back"></em
               ></a>
             </div>
             <ng-template #elseBlock>
               <div class="col-sm-4" style="text-align: end">
                 <a routerLink="../user-dashboard" title="Back"
-                  ><i class="bx bx-arrow-back"></i
+                  ><em class="bx bx-arrow-back"></em
                 ></a>
               </div>
             </ng-template>
@@ -59,15 +59,15 @@
                 index as i
               "
             >
-              <td class 
-              = "centre-align">{{ (page - 1) * itemPerPage + i + 1 }}</td>
+              <td class="centre-align">
+                {{ (page - 1) * itemPerPage + i + 1 }}
+              </td>
               <td>{{ contribution["participantName"] }}</td>
               <td>{{ contribution["designation"] }}</td>
               <td>{{ contribution["resourceManager"] }}</td>
               <td>{{ contribution["businessUnit"] }}</td>
               <td>{{ contribution["primarySkill"] }}</td>
-              <td class 
-              = "centre-align">{{ contribution["points"] }}</td>
+              <td class="centre-align">{{ contribution["points"] }}</td>
             </tr>
           </tbody>
         </table>

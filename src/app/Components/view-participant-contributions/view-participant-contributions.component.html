@@ -14,12 +14,10 @@
               <h2>
                 <b
                   >{{ participantDetails[0]["participantName"] }} Contribution
-                  Details for {{selectedYear}}</b
+                  Details for {{ selectedYear }}</b
                 >
               </h2>
-              <h2>
-                Overall Points : {{points}}
-              </h2>
+              <h2>Overall Points : {{ points }}</h2>
             </div>
             <div
               class="col-sm-4"
@@ -27,13 +25,13 @@
               *ngIf="isAdmin == 'true'; else elseBlock"
             >
               <a routerLink="../admin-dashboard" title="Back"
-                ><i class="bx bx-arrow-back"></i
+                ><em class="bx bx-arrow-back"></em
               ></a>
             </div>
             <ng-template #elseBlock>
               <div class="col-sm-4" style="text-align: end">
                 <a routerLink="../user-dashboard" title="Back"
-                  ><i class="bx bx-arrow-back"></i
+                  ><em class="bx bx-arrow-back"></em
                 ></a>
               </div>
             </ng-template>
@@ -59,25 +57,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr 
+            <tr
               *ngFor="
                 let contribution of participantDetails
                   | paginate : { itemsPerPage: itemPerPage, currentPage: page };
                 index as i
               "
             >
-              <td class 
-              = "centre-align">{{ (page - 1) * itemPerPage + i + 1 }}</td>
+              <td class="centre-align">
+                {{ (page - 1) * itemPerPage + i + 1 }}
+              </td>
               <td>{{ contribution["program"][0]["title"] }}</td>
-              <td class 
-              = "centre-align">{{ contribution["program"][0]["startDate"] }}</td>
-              <td class 
-              = "centre-align">{{ contribution["program"][0]["endDate"] }}</td>
+              <td class="centre-align">
+                {{ contribution["program"][0]["startDate"] }}
+              </td>
+              <td class="centre-align">
+                {{ contribution["program"][0]["endDate"] }}
+              </td>
               <td>{{ contribution["contributorType"] }}</td>
-              <td class 
-              = "centre-align">{{ contribution["points"] }}</td>
-              <td class 
-              = "centre-align">{{ contribution["awardedDate"] }}</td>
+              <td class="centre-align">{{ contribution["points"] }}</td>
+              <td class="centre-align">{{ contribution["awardedDate"] }}</td>
             </tr>
           </tbody>
         </table>
