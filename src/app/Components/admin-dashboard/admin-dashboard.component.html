@@ -44,7 +44,7 @@
       name="year"
       class="year-filter-style"
       id="year"
-      value="Year"
+      value="{{ currentYear }}"
       (change)="quarterFilterHandler()"
     />
 
@@ -71,11 +71,9 @@
   style="width: 100%; height: 400px; margin-top: 5px"
   class="ag-theme-alpine admin-dashboard-grid"
   [columnDefs]="columnDefs"
-  [rowData]="rowData"
   [gridOptions]="gridOptions"
   (gridReady)="onGridReady($event)"
   [pagination]="true"
   [paginationPageSize]="defaultPageSize"
-  [cacheBlockSize]="defaultPageSize"
 ></ag-grid-angular>
 <app-footer></app-footer>

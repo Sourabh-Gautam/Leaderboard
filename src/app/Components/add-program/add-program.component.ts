@@ -62,10 +62,10 @@ export class AddProgramComponent implements OnInit {
     this.onClose.emit();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.add = new window.bootstrap.Modal(document.getElementById('addModal'));
     this.add.show();
-    this.programTemplateService.getAllProgramTemplate().then((data: any) => {
+    await this.programTemplateService.getAllProgramTemplate().then((data: any) => {
       this.categoryList = data;
     });
   }

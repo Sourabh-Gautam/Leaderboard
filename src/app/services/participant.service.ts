@@ -19,8 +19,8 @@ export class ParticipantService {
     return this.participants;
   }
 
-  async getParticipantByEmail(email: string) {
-    const response = await axios.get(`${this.pdBaseUrl}/email/${email}`);
+  async getParticipantByEmail(email: string, selectedYear: number) {
+    const response = await axios.get(`${this.pdBaseUrl}/email/${email}/${selectedYear}`);
      this.participants = response.data.sort((a, b) => {
      return b.awardedDate.localeCompare(a.awardedDate);
      });

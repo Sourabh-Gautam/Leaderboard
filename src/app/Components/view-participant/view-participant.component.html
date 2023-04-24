@@ -70,20 +70,6 @@
               <th>Action</th>
             </tr>
           </thead>
-          <!-- "let participant of participants; index as i" -->
-          <!-- <tbody
-            *ngFor="
-              let participant of participants
-                | paginate
-                  : {
-                      id: 'listing_pagination',
-                      itemsPerPage: 10,
-                      currentPage: page,
-                      totalItems: totalRecords
-                    };
-              index as i
-            "
-          > -->
           <tbody
             *ngFor="
               let participant of participants
@@ -91,17 +77,16 @@
               index as i
             "
           >
-            <tr>
-              <td>{{ (page - 1) * itemPerPage + i + 1 }}</td>
+            <tr> 
+              <td class 
+              = "centre-align">{{ (page - 1) * itemPerPage + i + 1 }}</td>
               <td>{{ participant.participantName }}</td>
               <td>{{ participant.contributorType }}</td>
-              <td>{{ participant.points }}</td>
+              <td class 
+              = "centre-align">{{ participant.points }}</td>
               <td>{{ participant.addedBy }}</td>
-              <td>{{ participant.awardedDate }}</td>
-              <!-- <th>Organizers</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Weightage</th> -->
+              <td class 
+              = "centre-align">{{ participant.awardedDate }}</td>
 
               <td>
                 <a
@@ -131,14 +116,6 @@
             (pageChange)="page = $event"
           ></pagination-controls>
         </div>
-        <!-- <div>
-          <pagination-controls
-            id="listing-pagination"
-            maxSize="5"
-            (pageChange)="page = $event"
-          >
-          </pagination-controls>
-        </div> -->
       </div>
     </div>
   </div>
@@ -161,3 +138,4 @@
     console.log("Hello");
   </script>
 </body>
+<app-footer></app-footer>

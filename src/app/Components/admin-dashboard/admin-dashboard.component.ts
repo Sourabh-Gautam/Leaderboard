@@ -11,7 +11,6 @@ import {
 } from 'ag-grid-community/dist/lib/main';
 import { RequestWithFilterAndSort } from 'src/app/model/request-with-sort-filter';
 import { AgGridAngular } from 'ag-grid-angular';
-import { groupBy } from 'src/app/common.func';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +32,6 @@ export class AdminDashboardComponent implements OnInit {
   defaultPageSize = 5;
   gridColumnApi: any;
   gridApi: any;
-  public rowData = [];
   constructor(private adminService: AdminService, private router: Router) {}
 
   public columnDefs: ColDef[] = [
@@ -67,26 +65,28 @@ export class AdminDashboardComponent implements OnInit {
     },
     {
       field: 'points',
-      sortable: true,
       cellStyle: { fontSize: '16px' },
       filter: 'agNumberColumnFilter',
     },
   ];
 
   gridOptions: GridOptions = {
+    rowModelType: 'infinite',
+    cacheBlockSize: 100,
     defaultColDef: {
       filter: true,
+      sortable: true,
       minWidth: 200,
       resizable: true,
       floatingFilter: true,
       flex: 1,
     },
-    rowModelType: 'infinite',
-    suppressHorizontalScroll: true,
     onCellClicked: (event: CellClickedEvent) => {
+      
       if (event.colDef.field === 'participantName') {
+        const year = (<HTMLInputElement>document.querySelector('#year')).value;
         this.router.navigateByUrl('/participant-contributions', {
-          state: { email: event.data.email },
+          state: { email: event.data.email, selectedYear : year },
         });
       } else if (event.colDef.field === 'designation') {
         this.router.navigateByUrl('/participant-by-designation', {
@@ -122,7 +122,7 @@ export class AdminDashboardComponent implements OnInit {
   dataSource: IDatasource = {
     getRows: (params: IGetRowsParams) => {
       // preparing sort filter model
-
+      this.gridApi.setCacheBlockSize = this.defaultPageSize;
       let sort = 'desc';
       let colId = 'points';
       if (params.sortModel[0]) {
@@ -202,46 +202,6 @@ export class AdminDashboardComponent implements OnInit {
       .then((response) => {
         response.subscribe((response) => {
           const participants = response['participantDtoList'];
-          const totalRecords = response['numberOfParticipants'] + pageSize;
-
-          if (sortFilterModel['colId'] == 'points') {
-            if (sortFilterModel['sort'] === 'asc') {
-              let prevRank = 1;
-              let prevPoints = -1;
-              let count = 0;
-              participants.forEach((e, i) => {
-                if (prevPoints === e['points']) {
-                  count++;
-                  e['rank'] = prevRank;
-                } else {
-                  const rank = totalRecords - pageSize * pageNo - i - count;
-                  e['rank'] = rank;
-                  prevPoints = e['points'];
-                  prevRank = rank;
-                }
-              });
-            } else {
-              let prevRank = 1;
-              let prevPoints = -1;
-              let count = 0;
-              let rank = 0;
-              participants.forEach((e, i) => {
-                if (prevPoints === e['points']) {
-                  count++;
-                  e['rank'] = prevRank;
-                } else {
-                  rank = this.lastRank + i - count;
-                  e['rank'] = rank;
-                  prevPoints = e['points'];
-                  prevRank = rank;
-                }
-              });
-              this.lastRank = rank;
-            }
-          } else {
-            participants.forEach((e, i) => (e['rank'] = 0));
-          }
-
           params.successCallback(
             participants,
             response['numberOfParticipants']
@@ -288,8 +248,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   onPageSizeChanged(event: any) {
-    console.log('page changed');
-
     this.gridApi.paginationSetPageSize(Number(event.target.value));
     this.gridApi.setDatasource(this.dataSource);
   }
@@ -339,7 +297,9 @@ export class AdminDashboardComponent implements OnInit {
         'type',
         'text'
       );
-      (<HTMLInputElement>document.querySelector('#year')).value = 'Year';
+      (<HTMLInputElement>document.querySelector('#year')).value = String(
+        this.currentYear
+      );
       (<HTMLInputElement>document.querySelector('#quarterFilter')).setAttribute(
         'disabled',
         'true'

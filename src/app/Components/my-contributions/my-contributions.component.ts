@@ -22,13 +22,12 @@ export class MyContributionsComponent implements OnInit {
   async ngOnInit() {
     this.email = sessionStorage.getItem('email') as string;
     await this.participantService
-      .getParticipantByEmail(this.email)
+      .getParticipantByEmail(this.email, this.currentYear)
       .then((e) => {
         if (e.length == 0) {
           this.zeroContribution = true;
         } else {
           this.participantDetails = e;
-          console.log('Participnat Details :', this.participantDetails );
           this.participantDetails.map(x => {
             this.points += x['points'];
             console.log(x['points']);

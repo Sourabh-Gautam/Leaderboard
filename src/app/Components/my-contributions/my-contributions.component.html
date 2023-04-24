@@ -41,13 +41,18 @@
             </thead>
             <tbody>
               <tr *ngFor="let contribution of participantDetails; index as i">
-                <td>{{ i + 1 }}</td>
+                <td class 
+                = "centre-align">{{ i + 1 }}</td>
                 <td>{{ contribution["program"][0]["title"] }}</td>
-                <td>{{ contribution["program"][0]["startDate"] }}</td>
-                <td>{{ contribution["program"][0]["endDate"] }}</td>
+                <td class 
+                = "centre-align">{{ contribution["program"][0]["startDate"] }}</td>
+                <td class 
+                = "centre-align">{{ contribution["program"][0]["endDate"] }}</td>
                 <td>{{ contribution["contributorType"] }}</td>
-                <td>{{ contribution["points"] }}</td>
-                <td>{{ contribution["awardedDate"] }}</td>
+                <td class 
+                = "centre-align">{{ contribution["points"] }}</td>
+                <td class 
+                = "centre-align">{{ contribution["awardedDate"] }}</td>
               </tr>
             </tbody>
           </table>

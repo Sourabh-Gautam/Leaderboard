@@ -33,7 +33,7 @@ import { AddParticipantComponent } from './Components/add-participant/add-partic
 import { AddProgramComponent } from './Components/add-program/add-program.component';
 import { ViewProgramComponent } from './Components/view-program/view-program.component';
 import { EditProfileComponent } from './Components/edit-profile/edit-profile.component';
-import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+
 import { ViewParticipantContributionsComponent } from './Components/view-participant-contributions/view-participant-contributions.component';
 import { ViewParticipnatByRmComponent } from './Components/view-participnat-by-rm/view-participnat-by-rm.component';
 import { ViewParticipnatByPsComponent } from './Components/view-participnat-by-ps/view-participnat-by-ps.component';
@@ -42,6 +42,7 @@ import { ViewParticipnatByDesignationComponent } from './Components/view-partici
 import { UserDashboardComponent } from './Components/user-dashboard/user-dashboard.component';
 import { UserHeaderComponent } from './Components/user-header/user-header.component';
 import { MyContributionsComponent } from './Components/my-contributions/my-contributions.component';
+import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [

@@ -16,6 +16,8 @@ export class ViewParticipantContributionsComponent implements OnInit {
   participantDetails: any;
   isAdmin: string | null = sessionStorage.getItem('admin');
   currentPage: any;
+  points =0;
+  selectedYear : number;
   data: Array<any>;
   totalRecords: number;
 
@@ -36,11 +38,14 @@ export class ViewParticipantContributionsComponent implements OnInit {
     this.state$ = this.activatedRoute.paramMap.pipe(
       map(() => window.history.state)
     );
-    this.state$.subscribe((e) => (this.email = e['email']));
+    this.state$.subscribe((e) => (this.email = e['email'], this.selectedYear = e['selectedYear']));
     await this.participantService
-      .getParticipantByEmail(this.email)
+      .getParticipantByEmail(this.email, this.selectedYear)
       .then((e) => {
         this.participantDetails = e;
+        this.participantDetails.map(x => {
+        this.points += x['points'];
+        })
       });
     this.data = this.participantDetails;
     this.totalRecords = this.data.length;

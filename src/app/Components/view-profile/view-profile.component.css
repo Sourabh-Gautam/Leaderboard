@@ -1,13 +1,3 @@
-.program-container {
-  border: 1px rgb(255, 255, 255) solid;
-  width: 90%;
-  margin: 20px auto;
-  margin-bottom: 40px;
-  border-radius: 8px;
-  text-align: center;
-  padding: 20px;
-}
-
 .program-template {
   display: flex;
   justify-content: space-between;
@@ -29,6 +19,7 @@ body {
 .table-wrapper {
   margin: 30px auto;
   background: #fff;
+  overflow: scroll;
   height: 400px;
   padding: 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -57,7 +48,6 @@ body {
 
 table.table tr th,
 table.table tr td {
-  text-align: center;
   border-color: #e9e9e9;
 }
 table.table th i {

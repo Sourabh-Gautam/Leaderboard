@@ -57,18 +57,18 @@ export class AddParticipantComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.add = new window.bootstrap.Modal(document.getElementById('addModal'));
 
     this.add.show();
-    this.profileService.getAllProfiles().then((data: any) => {
+    await this.profileService.getAllProfiles().then((data: any) => {
       this.profileList = data;
       console.log('all prfoile :', data);
     });
-    this.contributorService.getAllContributorTypes().then((data: any) => {
+    await this.contributorService.getAllContributorTypes().then((data: any) => {
       this.contributorTypeList = data;
     });
-    this.profileService
+    await this.profileService
 
       .getAllProfilesForDropDown(this.programId)
 
