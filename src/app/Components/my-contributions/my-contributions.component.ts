@@ -16,7 +16,7 @@ export class MyContributionsComponent implements OnInit {
   zeroContribution = false;
   participantDetails: any[];
   isAdmin: string | null = sessionStorage.getItem('admin');
-
+  page: 1;
   itemsPerPageOptions = [
     5, 10, 15, 20, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
   ];
