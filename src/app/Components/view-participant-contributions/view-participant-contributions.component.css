@@ -29,7 +29,7 @@ table.table td a {
   cursor: pointer;
   display: inline-block;
   margin: 0 5px;
-  min-width: 24px;
+  min-width: 15px;
 }
 table.table td a.add {
   color: #27c46b;

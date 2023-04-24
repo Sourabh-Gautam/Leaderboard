@@ -36,7 +36,12 @@ export class ViewParticipnatByDesignationComponent implements OnInit {
     this.state$ = this.activatedRoute.paramMap.pipe(
       map(() => window.history.state)
     );
-    this.state$.subscribe((e) => (this.value = e['value']));
+    // this.state$.subscribe((e) => (this.value = e['value']));
+    this.state$.subscribe((e) => {
+      if (e && e['value']) {
+        this.value = e['value'];
+      }
+    });
     await this.participantService
       .getParticipantByDesignation(this.value)
       .then((e) => {

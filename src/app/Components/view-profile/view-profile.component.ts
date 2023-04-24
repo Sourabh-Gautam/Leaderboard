@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { dataExport } from 'src/app/common.func';
 import { ProfileService } from 'src/app/services/profile.service';
-
+ 
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
