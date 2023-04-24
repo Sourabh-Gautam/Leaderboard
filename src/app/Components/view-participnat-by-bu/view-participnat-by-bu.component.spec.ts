@@ -1,27 +1,3 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { ViewParticipnatByBuComponent } from './view-participnat-by-bu.component';
-// import { ActivatedRoute } from '@angular/router';
-
-// describe('ViewParticipnatByBuComponent', () => {
-//   let component: ViewParticipnatByBuComponent;
-//   let fixture: ComponentFixture<ViewParticipnatByBuComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ViewParticipnatByBuComponent],
-//       providers: [ActivatedRoute],
-//     }).compileComponents();
-
-//     fixture = TestBed.createComponent(ViewParticipnatByBuComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
