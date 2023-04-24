@@ -26,6 +26,7 @@ import { of } from 'rxjs';
 import { ViewParticipnatByDesignationComponent } from './view-participnat-by-designation.component';
 import { ParticipantService } from 'src/app/services/participant.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('ViewParticipnatByDesignationComponent', () => {
   let component: ViewParticipnatByDesignationComponent;
@@ -43,7 +44,7 @@ describe('ViewParticipnatByDesignationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewParticipnatByDesignationComponent],
+      declarations: [ViewParticipnatByDesignationComponent,FooterComponent],
       imports: [NgxPaginationModule],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteStub },

@@ -31,7 +31,7 @@ export class MyContributionsComponent implements OnInit {
   handleProfileExport() {
     dataExport(this.participantDetails, 'contribution-data');
   }
-
+ 
   // async getAllContributions() {
   //   await this.participantService.getParticipantByEmail(this.email, this.currentYear).then((data) => {
   //     this.profiles = data;

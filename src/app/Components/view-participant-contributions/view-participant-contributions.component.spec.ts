@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { ParticipantService } from 'src/app/services/participant.service';
 import { ViewParticipantContributionsComponent } from './view-participant-contributions.component';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('ViewParticipantContributionsComponent', () => {
   let component: ViewParticipantContributionsComponent;
@@ -18,7 +19,7 @@ describe('ViewParticipantContributionsComponent', () => {
     activatedRouteStub = { paramMap: of({ email: 'test@test.com' }) };
 
     await TestBed.configureTestingModule({
-      declarations: [ViewParticipantContributionsComponent],
+      declarations: [ViewParticipantContributionsComponent, FooterComponent],
       imports: [NgxPaginationModule],
       providers: [
         { provide: ParticipantService, useValue: participantServiceSpy },

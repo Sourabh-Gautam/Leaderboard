@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
+import { AppModule } from 'src/app/app.module';
 import { ParticipantService } from 'src/app/services/participant.service';
 
 @Component({
@@ -10,6 +13,13 @@ import { ParticipantService } from 'src/app/services/participant.service';
   templateUrl: './view-participnat-by-bu.component.html',
   styleUrls: ['./view-participnat-by-bu.component.css'],
 })
+// @NgModule({
+//   imports: [
+//     AppModule,
+//     CommonModule,
+//     FormsModule
+//   ]
+// })
 export class ViewParticipnatByBuComponent implements OnInit {
   state$: Observable<object>;
   value: string;

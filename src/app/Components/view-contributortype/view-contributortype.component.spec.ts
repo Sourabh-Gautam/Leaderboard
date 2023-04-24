@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ViewContributortypeComponent } from './view-contributortype.component';
 import { ContributorService } from 'src/app/services/contributor.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('ViewContributortypeComponent', () => {
   let component: ViewContributortypeComponent;
@@ -11,7 +13,7 @@ describe('ViewContributortypeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ViewContributortypeComponent],
+      declarations: [ViewContributortypeComponent,HeaderComponent,FooterComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [ContributorService],
     }).compileComponents();

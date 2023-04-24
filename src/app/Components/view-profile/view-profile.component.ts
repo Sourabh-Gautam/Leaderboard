@@ -34,7 +34,7 @@ export class ViewProfileComponent implements OnInit {
       this.profiles = data;
     });
     this.data = this.profiles;
-    this.totalRecords = this.data.length;
+    this.totalRecords = this.data.length; 
   }
   async getAllSubSkills() {
     await this.profileService.getAllSubSkill().then((subSkillData) => {
