@@ -4,6 +4,7 @@ import { ViewProgramTemplateComponent } from './view-program-template.component'
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { of } from 'rxjs';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 describe('ViewProgramTemplateComponent', () => {
   let component: ViewProgramTemplateComponent;
@@ -17,7 +18,7 @@ describe('ViewProgramTemplateComponent', () => {
     ]);
     await TestBed.configureTestingModule({
       declarations: [ViewProgramTemplateComponent],
-      imports: [RouterTestingModule, NgxPaginationModule],
+      imports: [RouterTestingModule, NgxPaginationModule, FormsModule],
       providers: [
         {
           provide: ProgramTemplateService,
