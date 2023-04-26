@@ -64,6 +64,11 @@ export class AdminDashboardComponent implements OnInit {
       cellStyle: { fontSize: '16px' },
     },
     {
+      field: 'subSkill',
+      headerName: 'Sub Skills',
+      cellStyle: { fontSize: '16px' },
+    },
+    {
       field: 'points',
       cellStyle: { fontSize: '16px' },
       filter: 'agNumberColumnFilter',
@@ -72,7 +77,6 @@ export class AdminDashboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     rowModelType: 'infinite',
-    cacheBlockSize: 100,
     defaultColDef: {
       filter: true,
       sortable: true,
@@ -82,11 +86,10 @@ export class AdminDashboardComponent implements OnInit {
       flex: 1,
     },
     onCellClicked: (event: CellClickedEvent) => {
-      
       if (event.colDef.field === 'participantName') {
         const year = (<HTMLInputElement>document.querySelector('#year')).value;
         this.router.navigateByUrl('/participant-contributions', {
-          state: { email: event.data.email, selectedYear : year },
+          state: { email: event.data.email, selectedYear: year },
         });
       } else if (event.colDef.field === 'designation') {
         this.router.navigateByUrl('/participant-by-designation', {
@@ -183,8 +186,6 @@ export class AdminDashboardComponent implements OnInit {
         sortFilterModel.data = 'yearFilter';
       }
 
-      console.log('Model - ', sortFilterModel);
-
       // calling api
 
       this.getAllParticipants(
@@ -202,6 +203,8 @@ export class AdminDashboardComponent implements OnInit {
       .then((response) => {
         response.subscribe((response) => {
           const participants = response['participantDtoList'];
+          console.log(participants);
+
           params.successCallback(
             participants,
             response['numberOfParticipants']
