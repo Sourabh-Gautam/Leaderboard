@@ -16,7 +16,12 @@ describe('ViewProgramComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, NgxPaginationModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        NgxPaginationModule,
+        FormsModule,
+      ],
 
       declarations: [ViewProgramComponent],
       providers: [ProgramService, ProgramTemplateService],

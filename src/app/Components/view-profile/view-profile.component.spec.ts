@@ -18,7 +18,7 @@ describe('ViewProfileComponent', () => {
     ]);
     await TestBed.configureTestingModule({
       declarations: [ViewProfileComponent],
-      imports: [NgxPaginationModule],
+      imports: [NgxPaginationModule, FormsModule],
       providers: [{ provide: ProfileService, useValue: profileServiceSpy }],
     }).compileComponents();
   });

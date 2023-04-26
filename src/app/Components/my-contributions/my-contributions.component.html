@@ -16,34 +16,35 @@
             <div class="row">
               <div class="col-sm-8">
                 <h2>
-                  <b
+                  <strong
                     >{{ participantDetails[0]["participantName"] }} Contribution
-                    Details of {{currentYear}}</b
+                    Details of {{ currentYear }}</strong
                   >
                 </h2>
-                <h2>
-                  Overall Points : {{points}}
-                </h2>
+                <h2>Overall Points : {{ points }}</h2>
               </div>
             </div>
             <label for="itemsPerPageSelect">Items per page:</label>
             <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
-              <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+              <option
+                *ngFor="let option of itemsPerPageOptions"
+                [value]="option"
+              >
                 {{ option }}
               </option></select
             ><br />
           </div>
           <div class="col-sm-4">
             <button
-                type="button"
-                class="btn btn-success"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                (click)="handleProfileExport()"
-              >
-                Export
-              </button>
-            </div>
+              type="button"
+              class="btn btn-success"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              (click)="handleProfileExport()"
+            >
+              Export
+            </button>
+          </div>
           <table class="table table-bordered">
             <thead class="bg-secondary text-light">
               <tr>
@@ -57,26 +58,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr 
-              *ngFor="
-                let contribution of participantDetails
-                  | paginate : { itemsPerPage: itemPerPage, currentPage: page };
-                index as i
-              "
-            >
-              <!-- <tr *ngFor="let contribution of participantDetails; index as i"> -->
-                <td class 
-                = "centre-align">{{ i + 1 }}</td>
+              <tr
+                *ngFor="
+                  let contribution of participantDetails
+                    | paginate
+                      : { itemsPerPage: itemPerPage, currentPage: page };
+                  index as i
+                "
+              >
+                <!-- <tr *ngFor="let contribution of participantDetails; index as i"> -->
+                <td class="centre-align">{{ i + 1 }}</td>
                 <td>{{ contribution["program"][0]["title"] }}</td>
-                <td class 
-                = "centre-align">{{ contribution["program"][0]["startDate"] }}</td>
-                <td class 
-                = "centre-align">{{ contribution["program"][0]["endDate"] }}</td>
+                <td class="centre-align">
+                  {{ contribution["program"][0]["startDate"] }}
+                </td>
+                <td class="centre-align">
+                  {{ contribution["program"][0]["endDate"] }}
+                </td>
                 <td>{{ contribution["contributorType"] }}</td>
-                <td class 
-                = "centre-align">{{ contribution["points"] }}</td>
-                <td class 
-                = "centre-align">{{ contribution["awardedDate"] }}</td>
+                <td class="centre-align">{{ contribution["points"] }}</td>
+                <td class="centre-align">{{ contribution["awardedDate"] }}</td>
               </tr>
             </tbody>
           </table>
