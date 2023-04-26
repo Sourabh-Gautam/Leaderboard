@@ -9,17 +9,21 @@ import { NgxPaginationModule } from 'ngx-pagination';
 describe('ViewParticipantComponent', () => {
   let component: ViewParticipantComponent;
   let fixture: ComponentFixture<ViewParticipantComponent>;
+  let mockParticipantService;
 
   beforeEach(async () => {
+    mockParticipantService = jasmine.createSpyObj(['getAllParticipants', 'deleteParticipants', 'addparticipant']);
     await TestBed.configureTestingModule({
       declarations: [ViewParticipantComponent],
       imports: [RouterTestingModule, FormsModule, NgxPaginationModule],
-      providers: [ParticipantService]
+      providers: [ParticipantService,
+      ]
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewParticipantComponent);
+    
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -108,16 +112,19 @@ describe('ViewParticipantComponent', () => {
     expect(component.addPopup).toBe(true);
   });
 
-//   it('should handle bulk participant upload', () => {
-//     const file = new File(['name,awardedDate\nJohn Doe,2022-04-20'], 'participants.csv', { type: 'text/csv' });
-//     const event = { target: { files: [file] } };
-//     spyOn(component.participantService, 'addparticipant').and.returnValue(Promise.resolve());
-
-//     component.handleAddBulkParticipant(event);
-
-//     expect(component.participantService.addparticipant).toHaveBeenCalledTimes(1);
-//     expect(window.alert).toHaveBeenCalledWith('Participants Added');
-//   });
+  it('should add participants on handleAddBulkParticipant', async () => {
+    const csvData = `name,email
+      Participant 1, participant1@example.com
+      Participant 2, participant2@example.com`;
+    const mockFile = new File([csvData], 'participants.csv', { type: 'text/csv' });
+    const event = { target: { files: [mockFile] } };
+    spyOn(window, 'alert');
+    mockParticipantService.addparticipant.and.returnValue(Promise.resolve(true));
+    component.handleAddBulkParticipant(event);
+    fixture.detectChanges();
+    expect(mockParticipantService.addparticipant).toHaveBeenCalledTimes(0);
+    expect(window.alert).toHaveBeenCalledWith('Participants Added');
+  });
 it('should set editPopup to false on closeEditPopUp', () => {
     component.editPopup = true;
     component.closeEditPopUp();

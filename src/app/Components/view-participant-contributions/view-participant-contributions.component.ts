@@ -40,8 +40,7 @@ export class ViewParticipantContributionsComponent implements OnInit {
     );
     this.state$.subscribe((e) => (this.email = e['email'], this.selectedYear = e['selectedYear']));
     await this.participantService
-      .getParticipantByEmail(this.email, this.selectedYear)
-      .then((e) => {
+      .getParticipantByEmail(this.email, this.selectedYear)?.then((e) => {
         this.participantDetails = e;
         this.participantDetails.map(x => {
         this.points += x['points'];
@@ -49,6 +48,7 @@ export class ViewParticipantContributionsComponent implements OnInit {
       });
     this.data = this.participantDetails;
     this.totalRecords = this.data.length;
-    console.log('Pd - ', this.participantDetails[0]);
+    // console.log('Pd - ', this.participantDetails[0]);
   }
 }
+

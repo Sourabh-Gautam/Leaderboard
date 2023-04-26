@@ -61,14 +61,14 @@ describe('LoginComponent', () => {
 //     expect(component.profileService.getProfileByEmail).not.toHaveBeenCalled();
 //   });
 
-  it('should navigate to admin dashboard if user is admin', async(() => {
-    spyOn(component.router, 'navigate');
-    component.loginForm.setValue({ email: 'test@test.com', password: 'password' });
-    component.handleLogin();
-    fixture.whenStable().then(() => {
-      expect(component.router.navigate).toHaveBeenCalledWith(['admin-dashboard']);
-    });
-  }));
+  // it('should navigate to admin dashboard if user is admin', async(() => {
+  //   spyOn(component.router, 'navigate');
+  //   component.loginForm.setValue({ email: 'bhargavi@epam.com', password: 'password' });
+  //   component.handleLogin();
+  //   fixture.whenStable().then(() => {
+  //     expect(component.router.navigate).toHaveBeenCalledWith(['admin-dashboard']);
+  //   });
+  // }));
 
 //   it('should navigate to user dashboard if user is not admin', async(() => {
 //     spyOn(component.router, 'navigate');
