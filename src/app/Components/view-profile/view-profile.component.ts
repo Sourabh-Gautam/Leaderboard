@@ -44,7 +44,7 @@ export class ViewProfileComponent implements OnInit {
   }
   async handleAddProfile() {
     this.addPopup = true;
-  }
+  } 
 
   handleProfileExport() {
     dataExport(this.profiles, 'profile-data');

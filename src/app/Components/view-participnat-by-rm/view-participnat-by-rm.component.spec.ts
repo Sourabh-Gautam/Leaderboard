@@ -24,7 +24,7 @@ describe('ViewParticipnatByRmComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ViewParticipnatByRmComponent, FooterComponent, UserHeaderComponent],
-      imports: [NgxPaginationModule],
+      imports: [NgxPaginationModule, FormsModule],
       providers: [
         { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: ParticipantService, useValue: participantServiceSpy },
