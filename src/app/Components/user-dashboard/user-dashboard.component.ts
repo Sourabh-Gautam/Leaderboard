@@ -33,7 +33,7 @@ export class UserDashboardComponent implements OnInit {
   gridColumnApi: any;
   gridApi: any;
   public rowData = [];
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(public adminService: AdminService, private router: Router) {}
 
   public columnDefs: ColDef[] = [
     {

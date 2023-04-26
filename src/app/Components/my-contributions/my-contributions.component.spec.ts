@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MyContributionsComponent } from './my-contributions.component';
 import { ParticipantService } from 'src/app/services/participant.service';
 import { FooterComponent } from '../footer/footer.component';
+import { of } from 'rxjs';
 // import { of } from 'rxjs';
 
 describe('MyContributionsComponent', () => {
@@ -27,16 +28,16 @@ describe('MyContributionsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-//   describe('when participant service returns an empty array', () => {
-//     beforeEach(() => {
-//       participantServiceSpy.getParticipantByEmail.and.returnValue(of([]));
-//       fixture.detectChanges();
-//     });
+  // describe('when participant service returns an empty array', () => {
+  //   beforeEach(() => {
+  //     participantServiceSpy.getParticipantByEmail.and.returnValue(of([]));
+  //     fixture.detectChanges();
+  //   });
 
-//     it('should set zeroContribution to true', () => {
-//       expect(component.zeroContribution).toBeTrue();
-//     });
-//   });
+  //   it('should set zeroContribution to true', () => {
+  //     expect(component.zeroContribution).toBeTrue();
+  //   });
+  // });
 
 //   describe('when participant service returns a non-empty array', () => {
 //     beforeEach(() => {
@@ -50,5 +51,19 @@ describe('MyContributionsComponent', () => {
 //       expect(component.participantDetails).toEqual([{ id: 1, name: 'Test Contribution' }]);
 //     });
 //   });
+
+describe('handleProfileExport', () => {
+  it('should call the dataExport function with the profiles data and a filename', () => {
+    const mockProfiles = [
+      { id: 1, name: 'John Doe' },
+      { id: 2, name: 'Jane Smith' },
+    ];
+    component.participantDetails = mockProfiles;
+    spyOn(window, 'open');
+
+    component.handleProfileExport();
+  });
+});
+
 });
 

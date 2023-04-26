@@ -22,7 +22,7 @@ describe('ViewParticipnatByPsComponent', () => {
     mockParticipantService = jasmine.createSpyObj(['getParticipantByPS']);
     await TestBed.configureTestingModule({
       declarations: [ViewParticipnatByPsComponent, FooterComponent, UserHeaderComponent],
-      imports: [NgxPaginationModule],
+      imports: [NgxPaginationModule, FormsModule],
       providers: [
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: ParticipantService, useValue: mockParticipantService },

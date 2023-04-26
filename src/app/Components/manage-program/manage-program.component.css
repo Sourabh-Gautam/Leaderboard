@@ -5,12 +5,16 @@
   display: flex;
   justify-content: space-evenly;
   width: 60%;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  word-wrap: break-word;
+  max-width: 10px;
   margin: auto;
 }
 
 .pm-card-container .card {
   margin: 20px;
+  word-wrap: break-word;
+  max-width: 10px;
   cursor: pointer;
 }
 .pm-card-container .card :hover {

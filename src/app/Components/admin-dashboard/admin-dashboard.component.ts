@@ -19,6 +19,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-dashboard.component.css'],
 })
 export class AdminDashboardComponent implements OnInit {
+  onCellClicked(cellClickedEvent: { colDef: { field: string; }; data: { email: string; }; }) {
+      throw new Error('Method not implemented.');
+  }
   participantList: any;
   constParticipantList: any;
   participantFields: any = participantFields();
@@ -32,7 +35,7 @@ export class AdminDashboardComponent implements OnInit {
   defaultPageSize = 5;
   gridColumnApi: any;
   gridApi: any;
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(public adminService: AdminService, public router: Router) {}
 
   public columnDefs: ColDef[] = [
     {

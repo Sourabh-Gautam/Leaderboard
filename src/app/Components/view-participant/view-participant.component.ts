@@ -30,7 +30,7 @@ export class ViewParticipantComponent implements OnInit {
 
   itemPerPage = 10;
 
-  constructor(private participantService: ParticipantService) {
+  constructor(public participantService: ParticipantService) {
     this.programId = Number(sessionStorage.getItem('id'));
     this.programTitle = sessionStorage.getItem('title') as string;
     this.weightage = sessionStorage.getItem('weightage');
@@ -98,12 +98,15 @@ export class ViewParticipantComponent implements OnInit {
     alert('Participants Added');
   }
 
+  // handleParticipantExport() {
+  //   const csvData = this.participants.map((e) => {
+  //     delete e['program'];
+  //     return e;
+  //   });
+  //   dataExport(csvData, 'participant-data');
+  // }
   handleParticipantExport() {
-    const csvData = this.participants.map((e) => {
-      delete e['program'];
-      return e;
-    });
-    dataExport(csvData, 'participant-data');
+    dataExport(this.participants, 'participant-data');
   }
   handleClickAddBulkParticipant(event) {
     const fileInputElement = document.querySelector(
