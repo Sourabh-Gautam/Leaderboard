@@ -16,7 +16,7 @@ export class AddProfileComponent implements OnInit {
   BusinessUnit: any;
   primarySkill: any;
   subSkill: any;
-  email:any;
+  email: any;
   form = {
     name: '',
   };
@@ -57,8 +57,10 @@ export class AddProfileComponent implements OnInit {
   }
   async handleAddProfile(formData) {
     console.log('haddle add profile data', formData);
-    const subskills : any[] = [];
-    formData.subSkill.forEach(element => subskills.push(element['subSkillName']));
+    const subskills: any[] = [];
+    formData.subSkill.forEach((element) =>
+      subskills.push(element['subSkillName'])
+    );
     console.log('Sub Skills', subskills);
     formData['subSkill'] = subskills;
 

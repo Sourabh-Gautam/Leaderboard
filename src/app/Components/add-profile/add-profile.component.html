@@ -95,15 +95,22 @@
                 </span>
               </div>
 
-              <select multiple class="form-control" name="subSkill" ngModel required multiple>
-                <option value="" disabled hidden>
-                </option>
+              <select
+                multiple
+                class="form-control"
+                name="subSkill"
+                ngModel
+                required
+                multiple
+              >
+                <option value="" disabled hidden></option>
 
                 <!-- <option *ngFor="let ss of subSkill" >
                   {{ ss.subSkillName}}
                 </option>  -->
-                <option *ngFor="let ss of subSkill" [ngValue]="ss">{{ ss.subSkillName }}</option>
-                
+                <option *ngFor="let ss of subSkill" [ngValue]="ss">
+                  {{ ss.subSkillName }}
+                </option>
               </select>
             </div>
 
@@ -177,18 +184,6 @@
 
                 <option value="false">User</option>
               </select>
-            </div>
-
-            <div class="input-group mb-3">
-              <!-- <div class="input-group-prepend">        <span class="input-group-text" id="basic-addon1"         ><i class="bx bxs-detail" style="font-size: 34px"> </i>        </span>       </div> -->
-
-              <input
-                type="hidden"
-                name="practiceTeam"
-                [(ngModel)]="practiceTeam"
-                class="form-control"
-                placeholder="Practice Team"
-              />
             </div>
           </div>
 
