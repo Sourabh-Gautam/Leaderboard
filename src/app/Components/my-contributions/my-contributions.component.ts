@@ -11,7 +11,7 @@ import { ParticipantService } from 'src/app/services/participant.service';
 })
 export class MyContributionsComponent implements OnInit {
   email: string;
-  currentYear : number;
+  currentYear: number;
   points = 0;
   zeroContribution = false;
   participantDetails: any[];
@@ -31,7 +31,7 @@ export class MyContributionsComponent implements OnInit {
   handleProfileExport() {
     dataExport(this.participantDetails, 'contribution-data');
   }
- 
+
   // async getAllContributions() {
   //   await this.participantService.getParticipantByEmail(this.email, this.currentYear).then((data) => {
   //     this.profiles = data;
@@ -49,11 +49,9 @@ export class MyContributionsComponent implements OnInit {
           this.zeroContribution = true;
         } else {
           this.participantDetails = e;
-          this.participantDetails.map(x => {
+          this.participantDetails.map((x) => {
             this.points += x['points'];
-            console.log(x['points']);
-          })
-
+          });
         }
       });
   }

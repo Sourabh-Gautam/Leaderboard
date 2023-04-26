@@ -45,7 +45,7 @@ export class ViewParticipantComponent implements OnInit {
         const ms1 = new Date(b.awardedDate).getTime();
         return ms1 - ms;
       });
-
+      console.log('Data part - ', data);
       this.participants = data;
     });
     this.data = this.participants;
@@ -53,7 +53,7 @@ export class ViewParticipantComponent implements OnInit {
   }
 
   async handleDeleteParticipant(event, participantId) {
-    let programId = event.currentTarget.nextSibling.value;
+    const programId = event.currentTarget.nextSibling.value;
 
     await this.participantService.deleteParticipants(programId, participantId);
     this.handleViewParticipant(programId);

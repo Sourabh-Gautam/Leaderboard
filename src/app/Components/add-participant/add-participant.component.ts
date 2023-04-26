@@ -18,6 +18,7 @@ export class AddParticipantComponent implements OnInit {
   designation: string;
   businessUnit: any;
   primarySkill: any;
+  subSkill: any;
   resourceManager: any;
   email: any;
   searchQuery = '';
@@ -85,6 +86,7 @@ export class AddParticipantComponent implements OnInit {
         this.businessUnit = element.businessUnit;
         this.resourceManager = element.rmName;
         this.primarySkill = element.primarySkill;
+        this.subSkill = element.subSkill;
         this.email = element.email;
         flag = false;
       }

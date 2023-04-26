@@ -77,16 +77,15 @@
               index as i
             "
           >
-            <tr> 
-              <td class 
-              = "centre-align">{{ (page - 1) * itemPerPage + i + 1 }}</td>
+            <tr>
+              <td class="centre-align">
+                {{ (page - 1) * itemPerPage + i + 1 }}
+              </td>
               <td>{{ participant.participantName }}</td>
               <td>{{ participant.contributorType }}</td>
-              <td class 
-              = "centre-align">{{ participant.points }}</td>
+              <td class="centre-align">{{ participant.points }}</td>
               <td>{{ participant.addedBy }}</td>
-              <td class 
-              = "centre-align">{{ participant.awardedDate }}</td>
+              <td class="centre-align">{{ participant.awardedDate }}</td>
 
               <td>
                 <a
@@ -134,8 +133,6 @@
       (closePopup)="closeAddPopUp()"
     ></app-add-participant>
   </div>
-  <script src="row-veiw.js">
-    console.log("Hello");
-  </script>
+  <script src="row-veiw.js"></script>
 </body>
 <app-footer></app-footer>
