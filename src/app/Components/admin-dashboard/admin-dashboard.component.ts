@@ -77,6 +77,7 @@ export class AdminDashboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     rowModelType: 'infinite',
+    cacheBlockSize: this.defaultPageSize,
     defaultColDef: {
       filter: true,
       sortable: true,
@@ -125,7 +126,6 @@ export class AdminDashboardComponent implements OnInit {
   dataSource: IDatasource = {
     getRows: (params: IGetRowsParams) => {
       // preparing sort filter model
-      this.gridApi.setCacheBlockSize = this.defaultPageSize;
       let sort = 'desc';
       let colId = 'points';
       if (params.sortModel[0]) {
@@ -257,6 +257,8 @@ export class AdminDashboardComponent implements OnInit {
 
   recPerPageHandler(recNo) {
     this.defaultPageSize = Number(recNo.target.value);
+    this.gridOptions.cacheBlockSize = this.defaultPageSize;
+    this.gridOptions.paginationPageSize = this.defaultPageSize;
     this.gridApi.setDatasource(this.dataSource);
   }
 
