@@ -77,7 +77,6 @@ export class AdminDashboardComponent implements OnInit {
 
   gridOptions: GridOptions = {
     rowModelType: 'infinite',
-    cacheBlockSize: this.defaultPageSize,
     defaultColDef: {
       filter: true,
       sortable: true,

@@ -13,16 +13,25 @@
       <div class="">
         <div class="table-wrapper">
           <div class="table-title">
-            <div class="row">
-              <div class="col-sm-8">
-                <h2>
-                  <strong
-                    >{{ participantDetails[0]["participantName"] }} Contribution
-                    Details of {{ currentYear }}</strong
-                  >
-                </h2>
-                <h2>Overall Points : {{ points }}</h2>
-              </div>
+            <div>
+              <h2>
+                <strong
+                  >{{ participantDetails[0]["participantName"] }} Contribution
+                  Details of {{ currentYear }}</strong
+                >
+              </h2>
+            </div>
+            <div class="my-flex" style="justify-content: space-between">
+              <h2>Overall Points : {{ points }}</h2>
+              <button
+                type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                (click)="handleProfileExport()"
+              >
+                Export
+              </button>
             </div>
             <label for="itemsPerPageSelect">Items per page:</label>
             <select id="itemsPerPageSelect" [(ngModel)]="itemPerPage">
@@ -33,17 +42,6 @@
                 {{ option }}
               </option></select
             ><br />
-          </div>
-          <div class="col-sm-4">
-            <button
-              type="button"
-              class="btn btn-success"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              (click)="handleProfileExport()"
-            >
-              Export
-            </button>
           </div>
           <table class="table table-bordered">
             <thead class="bg-secondary text-light">
