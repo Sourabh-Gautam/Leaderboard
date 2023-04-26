@@ -32,13 +32,6 @@ export class MyContributionsComponent implements OnInit {
     dataExport(this.participantDetails, 'contribution-data');
   }
 
-  // async getAllContributions() {
-  //   await this.participantService.getParticipantByEmail(this.email, this.currentYear).then((data) => {
-  //     this.profiles = data;
-  //   });
-  //   this.data = this.profiles;
-  //   this.totalRecords = this.data.length;
-  // }
 
   async ngOnInit() {
     this.email = sessionStorage.getItem('email') as string;
@@ -49,12 +42,6 @@ export class MyContributionsComponent implements OnInit {
           this.zeroContribution = true;
         } else {
           this.participantDetails = e;
-          // this.participantDetails.map(x => {
-          //   this.points += x['points'];
-
-          // }
-
-          // )
           this.participantDetails.forEach((x) => {
             this.points += x['points'];
           });

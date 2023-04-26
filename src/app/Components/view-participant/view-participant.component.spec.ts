@@ -1,26 +1,4 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { ViewParticipantComponent } from './view-participant.component';
-
-// describe('ViewParticipantComponent', () => {
-//   let component: ViewParticipantComponent;
-//   let fixture: ComponentFixture<ViewParticipantComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ ViewParticipantComponent ]
-//     })
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(ViewParticipantComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ViewParticipantComponent } from './view-participant.component';
@@ -82,6 +60,19 @@ describe('ViewParticipantComponent', () => {
     fixture.detectChanges();
 
     expect(component.participants.length).toBe(0);
+  });
+
+  describe('handleProfileExport', () => {
+    it('should call the dataExport function with the profiles data and a filename', () => {
+      const mockProfiles = [
+        { id: 1, name: 'John Doe' },
+        { id: 2, name: 'Jane Smith' },
+      ];
+      component.participants = mockProfiles;
+      spyOn(window, 'open');
+
+      component.handleParticipantExport();
+    });
   });
 
   it('should delete participant and refresh list', async () => {

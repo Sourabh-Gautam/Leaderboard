@@ -17,10 +17,10 @@ export class LoginComponent implements OnInit {
   profile: object;
   isAdmin: boolean;
   constructor(
-    private router: Router,
+    public router: Router,
     private formBuilder: FormBuilder,
     private participantService: ParticipantService,
-    private profileService: ProfileService
+    public profileService: ProfileService
   ) {}
 
   onClick() {
