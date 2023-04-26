@@ -146,6 +146,7 @@ describe('ViewParticipantComponent', () => {
   //   expect(mockParticipantService.addparticipant).toHaveBeenCalledTimes(0);
   //   expect(window.alert).toHaveBeenCalledWith('Participants Added');
   // });
+
   it('should set editPopup to false on closeEditPopUp', () => {
     component.editPopup = true;
     component.closeEditPopUp();
