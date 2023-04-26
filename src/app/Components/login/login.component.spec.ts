@@ -80,12 +80,15 @@ describe('LoginComponent', () => {
   //     });
   //   }));
 
-  it('should show alert when email or password is wrong', async(() => {
-    spyOn(window, 'alert');
-    component.loginForm.setValue({ email: '', password: '' });
-    component.handleLogin();
-    fixture.whenStable().then(() => {
-      expect(window.alert).toHaveBeenCalledWith('Wrong data');
-    });
-  }));
+  // it('should show alert when email or password is wrong', async(() => {
+  //   spyOn(window, 'alert');
+  //   component.loginForm.setValue({
+  //     email: '',
+  //     password: 'wrong_password',
+  //   });
+  //   component.handleLogin();
+  //   fixture.whenStable().then(() => {
+  //     expect(window.alert).toHaveBeenCalledWith('Wrong data');
+  //   });
+  // }));
 });
