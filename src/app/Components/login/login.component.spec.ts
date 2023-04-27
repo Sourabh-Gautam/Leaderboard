@@ -175,12 +175,15 @@ describe('LoginComponent', () => {
   //   expect(component.router.navigate).toHaveBeenCalledWith(['user-dashboard']);
   // });
 
-  // it('should show alert when email or password is incorrect', async () => {
-  //   spyOn(window, 'alert');
-  //   spyOn(component.profileService, 'getProfileByEmail').and.returnValue(Promise.resolve({ data: { name: 'John', email: 'test@example.com', admin: false } }));
-  //   component.loginForm.controls.email.setValue('wrong@example.com');
-  //   component.loginForm.controls.password.setValue('password');
-  //   await component.handleLogin();
-  //   expect(window.alert).toHaveBeenCalledWith('Wrong data');
-  // });
+  it('should show alert when email or password is wrong', async(() => {
+    spyOn(window, 'alert');
+    component.loginForm.setValue({
+      email: 'test1@epam.com',
+      password: 'wrong_password',
+    });
+    component.handleLogin();
+    fixture.whenStable().then(() => {
+      expect(window.alert).toHaveBeenCalledWith('Wrong data');
+    });
+  }));
 });

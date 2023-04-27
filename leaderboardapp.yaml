@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leaderboardapp-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      leaderboardapp: angular
+  template:
+    metadata:
+      labels:
+        leaderboardapp: angular
+    spec:
+      containers:
+        - name: leaderboardapp
+          image: divyamsethi/leaderboardapp
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leaderboardapp
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    leaderboardapp: angular
+  ports:
+    - port: 4200
+      targetPort: 4200
+      nodePort: 30004
