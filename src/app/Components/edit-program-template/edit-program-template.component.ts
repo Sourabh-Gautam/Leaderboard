@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare let window: any;
 @Component({
   selector: 'app-edit-program-template',
   templateUrl: './edit-program-template.component.html',
@@ -22,7 +23,7 @@ export class EditProgramTemplateComponent implements OnInit {
   async handleEditProgramTemplate(value) {
     console.log(value);
 
-    let weightage =
+    const weightage =
       document.querySelector<HTMLInputElement>('.weightage')?.value;
 
     value.weightage = Number(weightage);
@@ -36,7 +37,7 @@ export class EditProgramTemplateComponent implements OnInit {
           Swal.fire('Something went wrong');
         }
       })
-      .catch((error) => {
+      .catch(() => {
         Swal.fire('Something went wrong');
       })
       .finally(() => {
