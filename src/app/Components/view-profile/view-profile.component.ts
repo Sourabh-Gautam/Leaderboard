@@ -36,12 +36,12 @@ export class ViewProfileComponent implements OnInit {
     this.data = this.profiles;
     this.totalRecords = this.data.length; 
   }
-  async getAllSubSkills() {
-    await this.profileService.getAllSubSkill().then((subSkillData) => {
-      this.subSkill = subSkillData;
-    });
-    this.subSkillData = this.subSkill;
-  }
+  // async getAllSubSkills() {
+  //   await this.profileService.getAllSubSkill().then((subSkillData) => {
+  //     this.subSkill = subSkillData;
+  //   });
+  //   this.subSkillData = this.subSkill;
+  // }
   async handleAddProfile() {
     this.addPopup = true;
   } 

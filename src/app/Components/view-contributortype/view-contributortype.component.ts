@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -22,8 +23,8 @@ export class ViewContributortypeComponent implements OnInit {
   handleAddContributorType() {
     this.addPopup = true;
   }
-  ngOnInit(): void {
-    this.contributorService.getAllContributorTypes().then((data: any) => {
+  async ngOnInit(): Promise<void> {
+    await this.contributorService.getAllContributorTypes().then((data: any) => {
       this.contributorTypeList = data;
     });
   }
@@ -32,9 +33,9 @@ export class ViewContributortypeComponent implements OnInit {
       this.contributorTypeList = response;
     });
   }
-  handleAddContributortype() {
-    this.addPopup = true;
-  }
+  // handleAddContributortype() {
+  //   this.addPopup = true;
+  // }
 
   handleContributorTypeExport() {
     dataExport(this.contributorTypeList, 'contributor-type-data');

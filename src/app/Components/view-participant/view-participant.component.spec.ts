@@ -4,6 +4,8 @@ import { ViewParticipantComponent } from './view-participant.component';
 import { ParticipantService } from 'src/app/services/participant.service';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('ViewParticipantComponent', () => {
   let component: ViewParticipantComponent;
@@ -17,7 +19,7 @@ describe('ViewParticipantComponent', () => {
       'addparticipant',
     ]);
     await TestBed.configureTestingModule({
-      declarations: [ViewParticipantComponent],
+      declarations: [ViewParticipantComponent, HeaderComponent, FooterComponent],
       imports: [RouterTestingModule, FormsModule, NgxPaginationModule],
       providers: [ParticipantService],
     }).compileComponents();
