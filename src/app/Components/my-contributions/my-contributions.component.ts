@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component, OnInit } from '@angular/core';
-import { dataExport } from 'src/app/common.func';
+import { dataExport, dataExportWithProgramNames } from 'src/app/common.func';
 import { ParticipantService } from 'src/app/services/participant.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class MyContributionsComponent implements OnInit {
   zeroContribution = false;
   participantDetails: any[];
   isAdmin: string | null = sessionStorage.getItem('admin');
-  page: 1;
+  page = 1;
   itemsPerPageOptions = [
     5, 10, 15, 20, 25, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
   ];
@@ -29,9 +29,8 @@ export class MyContributionsComponent implements OnInit {
   }
 
   handleProfileExport() {
-    dataExport(this.participantDetails, 'contribution-data');
+    dataExportWithProgramNames(this.participantDetails, 'contribution-data');
   }
-
 
   async ngOnInit() {
     this.email = sessionStorage.getItem('email') as string;

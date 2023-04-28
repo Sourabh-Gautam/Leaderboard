@@ -19,9 +19,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-dashboard.component.css'],
 })
 export class AdminDashboardComponent implements OnInit {
-  onCellClicked(cellClickedEvent: { colDef: { field: string; }; data: { email: string; }; }) {
-      throw new Error('Method not implemented.');
-  }
   participantList: any;
   constParticipantList: any;
   participantFields: any = participantFields();
@@ -43,7 +40,7 @@ export class AdminDashboardComponent implements OnInit {
       cellStyle: { fontSize: '16px' },
       minWidth: 100,
       sortable: false,
-      filter: 'agNumberColumnFilter',
+      filter: false,
     },
     {
       field: 'participantName',
@@ -86,9 +83,12 @@ export class AdminDashboardComponent implements OnInit {
       sortable: true,
       minWidth: 200,
       resizable: true,
-      floatingFilter: true,
       flex: 1,
+      filterParams: {
+        suppressAndOrCondition: true,
+      },
     },
+
     onCellClicked: (event: CellClickedEvent) => {
       if (event.colDef.field === 'participantName') {
         const year = (<HTMLInputElement>document.querySelector('#year')).value;

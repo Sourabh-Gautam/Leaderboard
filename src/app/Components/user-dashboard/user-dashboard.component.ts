@@ -26,14 +26,14 @@ export class UserDashboardComponent implements OnInit {
   pageNo = 1;
   sortBy = 'points';
   sortOrder = 'desc';
+  lastRank = 1;
   currentYear = new Date().getFullYear();
   quarterCodes: string[] = [];
 
   defaultPageSize = 5;
   gridColumnApi: any;
   gridApi: any;
-  public rowData = [];
-  constructor(public adminService: AdminService, private router: Router) {}
+  constructor(public adminService: AdminService, public router: Router) {}
 
   public columnDefs: ColDef[] = [
     {
@@ -65,27 +65,33 @@ export class UserDashboardComponent implements OnInit {
       cellStyle: { fontSize: '16px' },
     },
     {
+      field: 'subSkill',
+      headerName: 'Sub Skills',
+      cellStyle: { fontSize: '16px' },
+    },
+    {
       field: 'points',
-      sortable: true,
       cellStyle: { fontSize: '16px' },
       filter: 'agNumberColumnFilter',
     },
   ];
 
   gridOptions: GridOptions = {
+    rowModelType: 'infinite',
+    cacheBlockSize: this.defaultPageSize,
     defaultColDef: {
       filter: true,
+      sortable: true,
       minWidth: 200,
       resizable: true,
       floatingFilter: true,
       flex: 1,
     },
-    rowModelType: 'infinite',
-    suppressHorizontalScroll: true,
     onCellClicked: (event: CellClickedEvent) => {
       if (event.colDef.field === 'participantName') {
+        const year = (<HTMLInputElement>document.querySelector('#year')).value;
         this.router.navigateByUrl('/participant-contributions', {
-          state: { email: event.data.email },
+          state: { email: event.data.email, selectedYear: year },
         });
       } else if (event.colDef.field === 'designation') {
         this.router.navigateByUrl('/participant-by-designation', {
@@ -121,7 +127,6 @@ export class UserDashboardComponent implements OnInit {
   dataSource: IDatasource = {
     getRows: (params: IGetRowsParams) => {
       // preparing sort filter model
-
       let sort = 'desc';
       let colId = 'points';
       if (params.sortModel[0]) {
@@ -182,8 +187,6 @@ export class UserDashboardComponent implements OnInit {
         sortFilterModel.data = 'yearFilter';
       }
 
-      console.log('Model - ', sortFilterModel);
-
       // calling api
 
       this.getAllParticipants(
@@ -196,55 +199,21 @@ export class UserDashboardComponent implements OnInit {
   };
 
   async getAllParticipants(pageNo, pageSize, sortFilterModel, params) {
-    console.log('Page no - ', pageNo);
-    console.log('Page size - ', pageSize);
-
     await this.adminService
       .getParticipants(pageNo, pageSize, sortFilterModel)
       .then((response) => {
         response.subscribe((response) => {
           const participants = response['participantDtoList'];
-          const totalRecords = response['numberOfParticipants'] + pageSize;
+          console.log(participants);
 
-          const finalData = this.rectifyingParticipantData(participants);
-
-          if (sortFilterModel['colId'] == 'points') {
-            if (sortFilterModel['sort'] === 'asc') {
-              finalData.forEach(
-                (e, i) => (e['rank'] = totalRecords - pageSize * pageNo - i)
-              );
-            } else {
-              finalData.forEach(
-                (e, i) => (e['rank'] = (pageNo - 1) * pageSize + i + 1)
-              );
-            }
-          } else {
-            finalData.forEach((e, i) => (e['rank'] = 0));
-          }
-
-          params.successCallback(finalData, response['numberOfParticipants']);
+          params.successCallback(
+            participants,
+            response['numberOfParticipants']
+          );
         });
       });
 
     this.gridOptions.paginationPageSize = pageSize;
-  }
-
-  rectifyingParticipantData(participants) {
-    const groupedParticipant = groupBy(participants, 'email');
-    const result: any = [];
-    for (const item in groupedParticipant) {
-      const participant = groupedParticipant[item];
-      const obj = participant[0];
-      if (participant.length > 1) {
-        let points = 0;
-        participant.forEach((e) => {
-          points = points + e['points'];
-        });
-        obj['points'] = points;
-      }
-      result.push(obj);
-    }
-    return result;
   }
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
@@ -283,14 +252,14 @@ export class UserDashboardComponent implements OnInit {
   }
 
   onPageSizeChanged(event: any) {
-    console.log('page changed');
-
     this.gridApi.paginationSetPageSize(Number(event.target.value));
     this.gridApi.setDatasource(this.dataSource);
   }
 
   recPerPageHandler(recNo) {
     this.defaultPageSize = Number(recNo.target.value);
+    this.gridOptions.cacheBlockSize = this.defaultPageSize;
+    this.gridOptions.paginationPageSize = this.defaultPageSize;
     this.gridApi.setDatasource(this.dataSource);
   }
 
@@ -334,7 +303,9 @@ export class UserDashboardComponent implements OnInit {
         'type',
         'text'
       );
-      (<HTMLInputElement>document.querySelector('#year')).value = 'Year';
+      (<HTMLInputElement>document.querySelector('#year')).value = String(
+        this.currentYear
+      );
       (<HTMLInputElement>document.querySelector('#quarterFilter')).setAttribute(
         'disabled',
         'true'
