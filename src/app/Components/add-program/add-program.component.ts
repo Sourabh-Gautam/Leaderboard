@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { ProgramService } from 'src/app/services/program.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare let window: any;
 
 @Component({
   selector: 'app-add-program',
@@ -34,7 +36,7 @@ export class AddProgramComponent implements OnInit {
 
     value.organizers = organizersValue;
 
-    let weightage =
+    const weightage =
       document.querySelector<HTMLInputElement>('.weightage')?.value;
 
     value.weightage = Number(weightage);

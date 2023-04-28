@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import { ProgramService } from 'src/app/services/program.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare let window: any;
 
 @Component({
   selector: 'app-edit-program',
@@ -20,7 +22,7 @@ export class EditProgramComponent implements OnInit {
   ) {}
 
   async handleEditProgram(value) {
-    let weightage =
+    const weightage =
       document.querySelector<HTMLInputElement>('.weightage')?.value;
 
     value.weightage = Number(weightage);

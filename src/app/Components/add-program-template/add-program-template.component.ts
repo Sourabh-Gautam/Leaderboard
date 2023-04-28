@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
 import Swal from 'sweetalert2';
-declare var window: any;
+declare let window: any;
 @Component({
   selector: 'app-add-program-template',
   templateUrl: './add-program-template.component.html',
@@ -20,7 +22,7 @@ export class AddProgramTemplateComponent implements OnInit {
   constructor(private programTemplateService: ProgramTemplateService) {}
 
   async handleAddProgramTemplate(value) {
-    let weightage =
+    const weightage =
       document.querySelector<HTMLInputElement>('.weightage')?.value;
 
     value.weightage = Number(weightage);
