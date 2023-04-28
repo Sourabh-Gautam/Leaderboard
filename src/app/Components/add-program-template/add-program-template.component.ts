@@ -3,7 +3,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ProgramTemplateService } from 'src/app/services/program-template.service';
-import Swal from 'sweetalert2';
+
 declare let window: any;
 @Component({
   selector: 'app-add-program-template',
