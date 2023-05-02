@@ -133,11 +133,15 @@ export class UserDashboardComponent implements OnInit {
         sort = params.sortModel[0].sort;
         colId = params.sortModel[0].colId;
       }
+      const year = Number(
+        (<HTMLInputElement>document.querySelector('#year')).value
+      );
       const sortFilterModel: RequestWithFilterAndSort = {
         colId: colId,
         sort: sort,
         filterModel: params.filterModel,
         data: undefined,
+        year: year,
       };
 
       // Handling date filter
@@ -299,13 +303,6 @@ export class UserDashboardComponent implements OnInit {
         'disabled',
         'true'
       );
-      (<HTMLInputElement>document.querySelector('#year')).setAttribute(
-        'type',
-        'text'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).value = String(
-        this.currentYear
-      );
       (<HTMLInputElement>document.querySelector('#quarterFilter')).setAttribute(
         'disabled',
         'true'
@@ -315,13 +312,6 @@ export class UserDashboardComponent implements OnInit {
       event.target.setAttribute('style', 'background: lightgreen;');
       (<HTMLInputElement>document.querySelector('#year')).removeAttribute(
         'disabled'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).setAttribute(
-        'type',
-        'number'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).value = String(
-        this.currentYear
       );
       (<HTMLInputElement>(
         document.querySelector('#quarterFilter')
