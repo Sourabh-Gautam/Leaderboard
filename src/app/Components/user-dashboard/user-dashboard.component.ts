@@ -41,7 +41,7 @@ export class UserDashboardComponent implements OnInit {
       cellStyle: { fontSize: '16px' },
       minWidth: 100,
       sortable: false,
-      filter: 'agNumberColumnFilter',
+      filter: false,
     },
     {
       field: 'participantName',
@@ -84,9 +84,12 @@ export class UserDashboardComponent implements OnInit {
       sortable: true,
       minWidth: 200,
       resizable: true,
-      floatingFilter: true,
       flex: 1,
+      filterParams: {
+        suppressAndOrCondition: true,
+      },
     },
+
     onCellClicked: (event: CellClickedEvent) => {
       if (event.colDef.field === 'participantName') {
         const year = (<HTMLInputElement>document.querySelector('#year')).value;
