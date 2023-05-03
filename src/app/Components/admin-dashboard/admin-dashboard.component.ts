@@ -70,7 +70,7 @@ export class AdminDashboardComponent implements OnInit {
     {
       field: 'points',
       cellStyle: { fontSize: '16px' },
-      filter: 'agNumberColumnFilter',
+      filter: false,
     },
   ];
 
@@ -134,11 +134,15 @@ export class AdminDashboardComponent implements OnInit {
         sort = params.sortModel[0].sort;
         colId = params.sortModel[0].colId;
       }
+      const year = Number(
+        (<HTMLInputElement>document.querySelector('#year')).value
+      );
       const sortFilterModel: RequestWithFilterAndSort = {
         colId: colId,
         sort: sort,
         filterModel: params.filterModel,
         data: undefined,
+        year: year,
       };
 
       // Handling date filter
@@ -298,13 +302,6 @@ export class AdminDashboardComponent implements OnInit {
         'disabled',
         'true'
       );
-      (<HTMLInputElement>document.querySelector('#year')).setAttribute(
-        'type',
-        'text'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).value = String(
-        this.currentYear
-      );
       (<HTMLInputElement>document.querySelector('#quarterFilter')).setAttribute(
         'disabled',
         'true'
@@ -314,13 +311,6 @@ export class AdminDashboardComponent implements OnInit {
       event.target.setAttribute('style', 'background: lightgreen;');
       (<HTMLInputElement>document.querySelector('#year')).removeAttribute(
         'disabled'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).setAttribute(
-        'type',
-        'number'
-      );
-      (<HTMLInputElement>document.querySelector('#year')).value = String(
-        this.currentYear
       );
       (<HTMLInputElement>(
         document.querySelector('#quarterFilter')

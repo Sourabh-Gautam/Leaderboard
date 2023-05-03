@@ -1,6 +1,7 @@
-export class RequestWithFilterAndSort{
-     filterModel:any;
-     colId:any;
-     sort:any;
-     data:any;
+export class RequestWithFilterAndSort {
+  filterModel: any;
+  colId: any;
+  sort: any;
+  data: any;
+  year: number;
 }
