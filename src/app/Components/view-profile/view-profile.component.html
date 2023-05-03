@@ -50,7 +50,7 @@
               <th>Resource Manager</th>
               <th>Role</th>
               <th>Action</th>
-            </tr> 
+            </tr>
           </thead>
           <tbody
             *ngFor="
@@ -58,10 +58,11 @@
                 | paginate : { itemsPerPage: itemPerPage, currentPage: page };
               index as i
             "
-          > 
+          >
             <tr class="{{ i % 2 == 0 ? 'bg-light' : '' }}">
-              <td class 
-              = "centre-align">{{ (page - 1) * itemPerPage + i + 1 }}</td>
+              <td class="centre-align">
+                {{ (page - 1) * itemPerPage + i + 1 }}
+              </td>
               <td>{{ profile["name"] }}</td>
               <td>{{ profile["email"] }}</td>
               <td>{{ profile.primarySkill }}</td>
@@ -93,7 +94,7 @@
           ></pagination-controls>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
   <div *ngIf="editPopup">
     <app-edit-profile
