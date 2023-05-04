@@ -8,16 +8,20 @@
   </div>
   <div class="date-range-filter">
     <input
-      type="date"
+      type="text"
       name="startDate"
       id="start-date-filter"
+      placeholder="Start date"
+      onfocus="(this.type = 'date')"
       (change)="startDateFilter()"
     />
     <span> &#8594;</span>
     <input
-      type="date"
+      type="text"
       name="endDate"
       id="end-date-filter"
+      placeholder="End date"
+      onfocus="(this.type = 'date')"
       (change)="endDateFilter()"
     />
     <button class="button-style" (click)="resetDateFilter()">Reset</button>
@@ -44,7 +48,7 @@
       name="year"
       class="year-filter-style"
       id="year"
-      value="Year"
+      value="{{ currentYear }}"
       (change)="quarterFilterHandler()"
     />
 
@@ -75,6 +79,6 @@
   (gridReady)="onGridReady($event)"
   [pagination]="true"
   [paginationPageSize]="defaultPageSize"
-  [cacheBlockSize]="defaultPageSize"
+  [suppressMenuHide]="true"
 ></ag-grid-angular>
 <app-footer></app-footer>

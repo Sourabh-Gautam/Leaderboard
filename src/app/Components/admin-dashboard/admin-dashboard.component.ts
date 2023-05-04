@@ -71,7 +71,7 @@ export class AdminDashboardComponent implements OnInit {
     {
       field: 'points',
       cellStyle: { fontSize: '16px' },
-      filter: false,
+      filter: 'agNumberColumnFilter',
     },
   ];
 

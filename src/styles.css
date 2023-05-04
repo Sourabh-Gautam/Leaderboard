@@ -6,7 +6,7 @@
   font-family: "Oswald Regular", Tahoma, sans-serif;
 }
 
-* ::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
 }
 
