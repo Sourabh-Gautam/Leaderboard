@@ -169,8 +169,6 @@ export class AdminDashboardComponent implements OnInit {
         sortFilterModel.data = 'dateFilter';
       }
 
-      // handling year filter
-
       if (
         (<HTMLInputElement>(
           document.querySelector('.year-filter-activator')

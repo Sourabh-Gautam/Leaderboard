@@ -4,12 +4,10 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { ParticipantService } from './participant.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  
   baseUrl = 'http://localhost:8081/api/v1/profiles';
   profiles: any;
   designation: any;
@@ -18,11 +16,11 @@ export class ProfileService {
   resourceManager: any;
   businessUnits: any;
   skill: any;
-  subSkill:any;
+  subSkill: any;
 
   constructor(private participantService: ParticipantService) {}
   async getAllSkill() {
-    await axios.get(`${this.baseUrl}/Skills`).then((response) => {
+    await axios.get(`${this.baseUrl}/skills`).then((response) => {
       this.skill = response.data;
     });
     return this.skill;
@@ -30,7 +28,7 @@ export class ProfileService {
 
   // subSkill
   async getAllSubSkill() {
-    await axios.get(`${this.baseUrl}/SubSkills`).then((response) => {
+    await axios.get(`${this.baseUrl}/subSkills`).then((response) => {
       this.subSkill = response.data;
     });
     return this.subSkill;
@@ -38,14 +36,14 @@ export class ProfileService {
   // subSkill
 
   async getAllBusinessUnit() {
-    await axios.get(`${this.baseUrl}/Business-Units`).then((response) => {
+    await axios.get(`${this.baseUrl}/businessUnits`).then((response) => {
       this.businessUnits = response.data;
     });
     return this.businessUnits;
   }
 
   async getAllResourceManager() {
-    await axios.get(`${this.baseUrl}/Resource-Managers`).then((response) => {
+    await axios.get(`${this.baseUrl}/resourceManagers`).then((response) => {
       this.resourceManager = response.data;
     });
     return this.resourceManager;
