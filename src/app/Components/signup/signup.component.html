@@ -61,13 +61,14 @@
         }"
         type="password"
         class="form-control password"
+        minlength="6"
         placeholder="Password"
       />
       <div
         *ngIf="submitted && registerForm.controls.password.errors"
         class="text-danger"
       >
-        Password is Required
+        Password should atleast 6 character long
       </div>
     </div>
 
@@ -84,6 +85,7 @@
             submitted && registerForm.controls.confirmPassword.errors
         }"
         type="password"
+        minlength="6"
         class="form-control confirm-password"
         placeholder="ConfirmPassword"
       />
@@ -91,7 +93,7 @@
         *ngIf="submitted && registerForm.controls.confirmPassword.errors"
         class="text-danger"
       >
-        Confirm Password is Required
+        Password should atleast 6 character long
       </div>
     </div>
 
