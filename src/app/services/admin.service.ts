@@ -12,7 +12,7 @@ export class AdminService {
   async getParticipants(pageNo: number, recordCount: number, sortFilterModel) {
     console.log(sortFilterModel);
     return await this.http.post(
-      `${this.baseUrl}/${pageNo - 1}/${recordCount}`,
+      `${this.baseUrl}?pageNo=${pageNo - 1}&recordCount=${recordCount}`,
       sortFilterModel
     );
   }

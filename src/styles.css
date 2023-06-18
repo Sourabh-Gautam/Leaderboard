@@ -49,13 +49,9 @@ body {
 }
 .button-style {
   border: 1px lightgray solid;
-
   border-radius: 4px;
-
   font-size: smaller;
-
   padding: 3px;
-
   background-color: whitesmoke;
 }
 
